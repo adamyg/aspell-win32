@@ -22,8 +22,13 @@ jobs:
     - name: Windows, generating Makefiles
       shell: cmd
       run: |
+        @set PERL=c:/Strawberry/perl/bin/perl
         git submodule init
         git submodule update
+        @pushd win32port
+        ./mk-src
+        ./mk-static-src
+        @popd
         ./mk-cmake --release --prime --vs140
 
     - name: Windows, compiling
