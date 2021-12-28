@@ -1,0 +1,32 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Windows, generating Makefiles
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: |
+        git submodule init
+        git submodule update
+        ./mk-cmake --release --prime --vs140
+
+    - name: Windows, compiling
+      shell: cmd
+      run: |
+        ./mk-cmake --release --build --vs140
+
+    - name: Windows, package
+      uses: actions/upload-artifact@v2
+      with:
+        name: package-win32.vs140
+        path: ./output.vs140/*
+        
+

@@ -4,6 +4,8 @@ set CMAKE="C:/Program Files/cmake/bin/cmake"
 set CONFIG=Release
 set TOOLCHAIN="Visual Studio 14 2015"
 set MSVC=vs140
+set PRIME=yes
+set BUILD=yes
 set X64=yes
 
 :Arguments
@@ -15,6 +17,17 @@ if "%1"=="--release" (
         )
 if "%1"=="--debug" (
         set CONFIG=Debug
+        shift
+        goto Arguments
+        )
+
+if "%1"=="--prime" (
+        set BUILD=no
+        shift
+        goto Arguments
+        )
+if "%1"=="--build" (
+        set PRIME=no
         shift
         goto Arguments
         )
@@ -80,7 +93,7 @@ if "%1"=="--vs143" (
         )
 :Help
         echo #
-        echo # mk-cmake [--release or --debug] --vsxxx [--cmake <path>]
+        echo # mk-cmake [--release or --debug] [--prime, --build] --vsxxx [--cmake <path>]
         echo #
         echo # Toolchains:
         echo #    --vs90    Visual Studio 9 2008
@@ -95,11 +108,12 @@ if "%1"=="--vs143" (
         goto exit
 
 :Continue
-        %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_release.%MSVC%"
-        %CMAKE% --build build_win32_release.%MSVC% --config %CONFIG%
+        if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_release.%MSVC%"
+        if "%BUILD%"=="yes" %CMAKE% --build build_win32_release.%MSVC% --config %CONFIG%
+
         if "%X64%"=="yes" (
-                %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_release.%MSVC%"
-                %CMAKE% --build build_x64_release.%MSVC% --config %CONFIG%
+                if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_release.%MSVC%"
+                if "%BUILD%"=="yes" %CMAKE% --build build_x64_release.%MSVC% --config %CONFIG%
         )
         goto Exit
 
