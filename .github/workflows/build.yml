@@ -26,10 +26,10 @@ jobs:
         git submodule init
         git submodule update
         @pushd win32port
-        ./mk-src
-        ./mk-static-src
+        call ./mk-src
+        call ./mk-static-src
         @popd
-        ./mk-cmake --release --prime --vs140
+        call ./mk-cmake --release --prime --vs140
 
     - name: Windows, compiling
       shell: cmd
