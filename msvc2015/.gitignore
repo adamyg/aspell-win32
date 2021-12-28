@@ -1,0 +1,10 @@
+*.opendb
+*.db
+.vs/
+Debug/
+Debug_Static/
+Release/
+Release_Static/
+X64/
+My Advisor Results*/
+

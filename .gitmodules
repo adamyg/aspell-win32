@@ -1,0 +1,6 @@
+[submodule "submodule/PDCurses"]
+	path = submodule/PDCurses
+	url = https://github.com/wmcbrine/PDCurses.git
+[submodule "submodule/aspell"]
+	path = submodule/aspell
+	url = https://github.com/GNUAspell/aspell.git
