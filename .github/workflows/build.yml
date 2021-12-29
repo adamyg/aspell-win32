@@ -11,8 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: ilammy/msvc-dev-cmd@v1
-
     - name: Install Windows 8.1 SDK
       shell: powershell
       run: |
@@ -27,7 +25,7 @@ jobs:
         git submodule update
         call ./mk-cmake --release --prime --vs140
         call ./mk-cmake --release --prime --vs142
-        choco install innosetup --version=5.6.1 --force
+        @rem choco install innosetup --version=5.6.1 --force
 
     - name: Windows, compiling
       shell: cmd
