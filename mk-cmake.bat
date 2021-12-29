@@ -108,6 +108,15 @@ if "%1"=="--vs143" (
         goto exit
 
 :Continue
+        if "%PRIME%"=="yes" (
+                if not exist "win32port\gen" (
+                        @pushd win32port
+                        call ./mk-src
+                        call ./mk-static-src
+                        @popd
+                )
+        )
+
         if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_release.%MSVC%"
         if "%BUILD%"=="yes" %CMAKE% --build build_win32_release.%MSVC% --config %CONFIG%
 

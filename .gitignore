@@ -1,7 +1,9 @@
 # Build directories
+win32port/gen/
 build_win32*/
 build_x64*/
 output.vs*/
+ref/
 
 # Prerequisites
 *.d
