@@ -107,6 +107,7 @@ add_subdirectory(PDCurses/ozdemo)
 add_subdirectory(PDCurses/tuidemo)
 add_subdirectory(PDCurses/worm)
 
+add_subdirectory(word-list-compress)
 add_subdirectory(aspell)
 
 #end

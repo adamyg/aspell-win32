@@ -3,6 +3,7 @@ set(PROJECT_NAME aspell-list-dicts)
 ################################################################################
 # Source groups
 ################################################################################
+
 set(Source_Files
         "../../../submodule/aspell/examples/list-dicts.c"
 )
@@ -84,4 +85,3 @@ target_link_options(${PROJECT_NAME} PRIVATE
         )
 
 #end
-
