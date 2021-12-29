@@ -264,13 +264,13 @@ target_compile_options(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
        )
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY
-        "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
-        "$<$<CONFIG:Release>:MultiThreadedDLL>"
+        "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"      ## -MDd
+        "$<$<CONFIG:Release>:MultiThreadedDLL>"         ## -MD
         )
 
 set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION} PROPERTY
-        "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
-        "$<$<CONFIG:Release>:MultiThreadedDLL>"
+        "$<$<CONFIG:Debug>:MultiThreadedDebug>"         ## -MTd
+        "$<$<CONFIG:Release>:MultiThreaded>"            ## -MT
         )
 
 add_compile_definitions(
