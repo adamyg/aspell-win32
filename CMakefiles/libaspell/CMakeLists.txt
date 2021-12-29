@@ -273,9 +273,19 @@ set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION} PROPERTY
         "$<$<CONFIG:Release>:MultiThreaded>"            ## -MT
         )
 
+        # If Aspell is compiled with WIN32_RELOCATABLE=1, it can be run from any directory:
+        # it will set prefix according to its install location (assuming it resides in prefix\\bin).
+        #
+        # Your personal wordlists will be saved in the prefix directory with their names changed from
+        # .aspell.lang.* to lang.* (you can override the path by setting the HOME environment variable).
+        #
+##add_compile_definitions(
+##      "ENABLE_WIN32_RELOCATABLE=1"
+##      )
+
 add_compile_definitions(
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"
+##      "$<$<CONFIG:Release>:NDEBUG;>"                  ## libaspell requirement.
         "_WINDOWS;"
         "_MBCS;"
         )
@@ -305,3 +315,4 @@ add_link_options(
             )
 
 ##end
+
