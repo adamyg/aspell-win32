@@ -4,12 +4,12 @@ set(PROJECT_NAME firework)
 # Source groups
 ################################################################################
 set(Source_Files
-    "../../../submodule/PDCurses/demos/firework.c"
+        "../../../submodule/PDCurses/demos/firework.c"
 )
 source_group("Source Files" FILES ${Source_Files})
 
 set(ALL_FILES
-    ${Source_Files}
+        ${Source_Files}
 )
 
 ################################################################################
@@ -78,9 +78,9 @@ elseif("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "Win32")
                 /SUBSYSTEM:CONSOLE
                 )
 endif()
- 
+
 target_link_options(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Debug>:/DEBUG:FULL>
         )
-        
-#end        
+
+#end

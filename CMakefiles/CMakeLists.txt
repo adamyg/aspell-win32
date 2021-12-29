@@ -97,13 +97,16 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 
-add_subdirectory(aspell)
 add_subdirectory(libaspell)
+add_subdirectory(libaspell/example)
+add_subdirectory(libaspell/list-dicts)
+
 add_subdirectory(PDCurses)
 add_subdirectory(PDCurses/firework)
 add_subdirectory(PDCurses/ozdemo)
 add_subdirectory(PDCurses/tuidemo)
 add_subdirectory(PDCurses/worm)
 
-#end
+add_subdirectory(aspell)
 
+#end

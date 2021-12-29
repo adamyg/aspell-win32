@@ -1,10 +1,10 @@
-set(PROJECT_NAME worm)
+set(PROJECT_NAME aspell-list-dicts)
 
 ################################################################################
 # Source groups
 ################################################################################
 set(Source_Files
-        "../../../submodule/PDCurses/demos/worm.c"
+        "../../../submodule/aspell/examples/list-dicts.c"
 )
 source_group("Source Files" FILES ${Source_Files})
 
@@ -26,16 +26,16 @@ set(ROOT_NAMESPACE libaspell)
 ################################################################################
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../../submodule/PDCurses;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../../submodule/aspell/interfaces/cc"
         )
 
 ################################################################################
 # Dependencies
 ################################################################################
 
-target_link_libraries(${PROJECT_NAME} PDCurses)
+target_link_libraries(${PROJECT_NAME} libaspell-0.60)
 add_dependencies(${PROJECT_NAME}
-        PDCurses
+        libaspell
         )
 
 ################################################################################
@@ -84,3 +84,4 @@ target_link_options(${PROJECT_NAME} PRIVATE
         )
 
 #end
+

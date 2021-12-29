@@ -93,14 +93,14 @@ if "%1"=="--vs143" (
         )
 :Help
         echo #
-        echo # mk-cmake [--release or --debug] [--prime, --build] --vsxxx [--cmake <path>]
+        echo #  mk-cmake [--release or --debug] [--prime or --build] [--cmake {path}] [--vsxxx]
         echo #
-        echo # Toolchains:
+        echo #  Toolchains:
         echo #    --vs90    Visual Studio 9 2008
         echo #    --vs100   Visual Studio 10 2010
         echo #    --vs110   Visual Studio 11 2012
         echo #    --vs120   Visual Studio 12 2013
-        echo #    --vs140   Visual Studio 14 2015
+        echo #    --vs140   Visual Studio 14 2015 (default)
         echo #    --vs141   Visual Studio 15 2017
         echo #    --vs142   Visual Studio 16 2019
         echo #    --vs143   Visual Studio 17 2022
