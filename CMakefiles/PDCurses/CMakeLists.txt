@@ -3,7 +3,7 @@
 #
 
 set(PROJECT_NAME PDCurses)
-set(ROOT_NAMESPACE libaspell)
+set(ROOT_NAMESPACE PDCurses)
 
 ################################################################################
 # Source groups
@@ -103,7 +103,7 @@ use_props(${PROJECT_NAME}${SHARED_VERSION} "${CMAKE_CONFIGURATION_TYPES}" "${DEF
 include_directories(PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/PDCurses"
         )
-        
+
 
 ################################################################################
 # Compile and link options
@@ -123,7 +123,7 @@ set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION} PROPERTY
         "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
         "$<$<CONFIG:Release>:MultiThreadedDLL>"
         )
-        
+
 target_compile_definitions(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
         "PDC_DLL_BUILD"
         )

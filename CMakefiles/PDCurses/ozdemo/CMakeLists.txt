@@ -1,4 +1,9 @@
+#
+# PDCurses: demo program
+#
+
 set(PROJECT_NAME ozdemo)
+set(ROOT_NAMESPACE PDCurses)
 
 ################################################################################
 # Source groups
@@ -19,7 +24,6 @@ set(ALL_FILES
 add_executable(${PROJECT_NAME} ${ALL_FILES})
 
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
-set(ROOT_NAMESPACE libaspell)
 
 ################################################################################
 # Include directories
