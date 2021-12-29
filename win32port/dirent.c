@@ -51,6 +51,7 @@ static int __islink(const wchar_t * name, char * buffer)
 
 static DIR* __internal_opendir(wchar_t* wname, int size)
 {
+	wchar_t* wcursor;
 	struct __dir* data = NULL;
 	struct dirent *tmp_entries = NULL;
 	static char default_char = '?';
@@ -62,8 +63,13 @@ static DIR* __internal_opendir(wchar_t* wname, int size)
 	HANDLE hFindFile = INVALID_HANDLE_VALUE;
 	static int grow_factor = 2;
 	char* buffer = NULL;
+	BOOL relative;
 
-	BOOL relative = PathIsRelativeW(wname + extra_prefix);
+	for (wcursor = wname; *wcursor; ++wcursor) { //unix2dos
+		if ('/' == *wcursor) *wcursor = '\\';
+	}
+
+	relative = PathIsRelativeW(wname + extra_prefix);
 
 	memcpy(wname + size - 1, suffix, sizeof(wchar_t) * extra_suffix);
 	wname[size + extra_suffix - 1] = 0;
@@ -98,6 +104,9 @@ static DIR* __internal_opendir(wchar_t* wname, int size)
 		WideCharToMultiByte(CP_UTF8, 0, w32fd.cFileName, -1, data->entries[data->index].d_name, NAME_MAX, &default_char, NULL);
 
 		memcpy(wname + size, w32fd.cFileName, sizeof(wchar_t) * NAME_MAX);
+		for (wcursor = wname; *wcursor; ++wcursor) { //dos2unix
+			if ('\\' == *wcursor) *wcursor = '/';
+		}
 
 		if (((w32fd.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) == FILE_ATTRIBUTE_REPARSE_POINT) && __islink(wname, buffer))
 			data->entries[data->index].d_type = DT_LNK;
@@ -155,7 +164,7 @@ static wchar_t* __get_buffer()
 DIR* opendir(const char* name)
 {
 	DIR* dirp = NULL;
-	wchar_t* wname = __get_buffer();
+        wchar_t* wname = __get_buffer();
 	int size = 0;
 	if (!wname)
 	{
@@ -263,3 +272,4 @@ long int telldir(DIR* dirp)
 	}
 	return ((struct __dir*)dirp)->count;
 }
+

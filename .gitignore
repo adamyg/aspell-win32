@@ -3,6 +3,8 @@ win32port/gen/
 build_win32*/
 build_x64*/
 output.vs*/
+Dictionaries/
+Personal/
 ref/
 
 # Prerequisites
