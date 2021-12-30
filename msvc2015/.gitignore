@@ -2,9 +2,11 @@
 *.db
 .vs/
 Debug/
-Debug_Static/
+DebugStatic/
+DebugShared/
 Release/
-Release_Static/
+ReleaseStatic/
+ReleaseShared/
 X64/
 My Advisor Results*/
 
