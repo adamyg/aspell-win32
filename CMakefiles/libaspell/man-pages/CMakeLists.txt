@@ -39,7 +39,7 @@ foreach(man_page ${MANUAL_PAGES})
 
         # Get the filename from the full path.
         get_filename_component(man_page_name ${man_page} NAME_WLE)
-     ## message("build: man_page ${man_page_name} [${DOC_OUTPUT_DIRECTORY}/${man_page_name}.txt]")
+        message("build: man_page ${man_page_name} [${DOC_OUTPUT_DIRECTORY}/${man_page_name}.txt]")
 
         # Add a new custom target for the current header.
         add_custom_target(
