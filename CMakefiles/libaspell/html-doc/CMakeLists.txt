@@ -31,7 +31,7 @@ endif()
 set(HTML_OUTPUT_DIRECTORY "${MSVC_OUTPUT_DIRECTORY}/html")
 file(MAKE_DIRECTORY "${HTML_OUTPUT_DIRECTORY}")
 
-find_path(CYGWIN_PATH cygwin1.dll HINTS "C:/Cygwin64/bin" "D:/Cygwin64/bin" "C:/tools/cygwin" ENV PATH)
+find_path(CYGWIN_PATH cygcheck.exe HINTS "C:/Cygwin64/bin" "D:/Cygwin64/bin" "C:/tools/cygwin" ENV PATH)
 message("cygwin: ${CYGWIN_PATH}")
 
 foreach(html_doc ${MANUAL_PAGES})
