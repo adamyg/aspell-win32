@@ -44,7 +44,7 @@ foreach(man_page ${MANUAL_PAGES})
         # Add a new custom target for the current header.
         add_custom_target(
                 man_page_${man_page_name} ALL
-                COMMENT "build: man_page [${man_page_name}.txt]"
+                COMMENT "building: man_page [${man_page_name}.txt]"
                 COMMAND ../../../win32port/mandoc/mandoc -T ascii -O width=98 ${man_page} > ${DOC_OUTPUT_DIRECTORY}/${man_page_name}.txt
                 VERBATIM #note: spaces around redirection operator ">"
                 )
