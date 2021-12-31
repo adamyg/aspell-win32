@@ -60,9 +60,8 @@ set_config_specific_property("ARCHIVE_OUTPUT_NAME" "${TARGET_NAME}")
 set_config_specific_property("LIBRARY_OUTPUT_NAME" "${TARGET_NAME}")
 set_config_specific_property("RUNTIME_OUTPUT_NAME" "${TARGET_NAME}")
 
-set_config_specific_property("ARCHIVE_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}")
-set_config_specific_property("LIBRARY_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}")
-set_config_specific_property("RUNTIME_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}")
+set_config_specific_property("ARCHIVE_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}/lib")
+set_config_specific_property("LIBRARY_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}/bin")
+set_config_specific_property("RUNTIME_OUTPUT_DIRECTORY" "${OUTPUT_DIRECTORY}/bin")
 
 ##end
-

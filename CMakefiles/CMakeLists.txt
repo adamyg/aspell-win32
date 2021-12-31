@@ -98,6 +98,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 ################################################################################
 
 add_subdirectory(libaspell)
+add_subdirectory(libaspell/man-pages)
 add_subdirectory(libaspell/example)
 add_subdirectory(libaspell/list-dicts)
 
