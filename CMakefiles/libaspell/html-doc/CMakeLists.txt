@@ -33,9 +33,9 @@ set(HTML_OUTPUT_DIRECTORY "${MSVC_OUTPUT_DIRECTORY}/html")
 file(MAKE_DIRECTORY "${HTML_OUTPUT_DIRECTORY}")
 
 # toolchain
-find_path(MAKEINFO_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" "C:/tools/cygwin" ENV PATH)
-if (MAKEINFO_PATH STREQUAL "UNKNOWN")
-        find_path(MAKEINFO_PATH makeinfo HINTS "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH)
+find_path(MAKEINFO_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" ENV PATH) #cygwin
+if (MAKEINFO_PATH STREQUAL "MAKEINFO_PATH-NOTFOUND")
+        find_path(MAKEINFO_PATH makeinfo HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("makeinfo: ${MAKEINFO_PATH}")
 
