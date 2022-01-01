@@ -32,20 +32,20 @@ add_custom_target(man-pages)
 if (NOT DEFINED ${MSVC_OUTPUT_DIRECTORY})
         set(MSVC_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../output.vs${MSVC_TOOLSET_VERSION}")
 endif()
-set(DOC_OUTPUT_DIRECTORY "${MSVC_OUTPUT_DIRECTORY}/doc")
-file(MAKE_DIRECTORY "${DOC_OUTPUT_DIRECTORY}")
+set(MAN_OUTPUT_DIRECTORY "${MSVC_OUTPUT_DIRECTORY}/man")
+file(MAKE_DIRECTORY "${MAN_OUTPUT_DIRECTORY}")
 
 foreach(man_page ${MANUAL_PAGES})
 
         # Get the filename from the full path.
         get_filename_component(man_page_name ${man_page} NAME_WLE)
-        message("build: man_page ${man_page_name} [${DOC_OUTPUT_DIRECTORY}/${man_page_name}.txt]")
+        message("build: man_page ${man_page_name} [${MAN_OUTPUT_DIRECTORY}/${man_page_name}.txt]")
 
         # Add a new custom target for the current header.
         add_custom_target(
                 man_page_${man_page_name} ALL
                 COMMENT "building: man_page [${man_page_name}.txt]"
-                COMMAND ../../../win32port/mandoc/mandoc -T ascii -O width=98 ${man_page} > ${DOC_OUTPUT_DIRECTORY}/${man_page_name}.txt
+                COMMAND ../../../win32port/mandoc/mandoc -T ascii -O width=98 ${man_page} > ${MAN_OUTPUT_DIRECTORY}/${man_page_name}.txt
                 VERBATIM #note: spaces around redirection operator ">"
                 )
         add_dependencies(man-pages man_page_${man_page_name})
