@@ -80,9 +80,7 @@ Name: "{group}\Aspell homepage\Aspell support";                 Filename: "{app}
 Name: "{group}\Aspell Manual";                                  Filename: "{app}\doc\aspell\index.html"
 Name: "{group}\Download dictionaries";                          Filename: "{app}\doc\Aspell-dictionaries.url"
 Name: "{group}\Uninstall Aspell-@ASPELL_VERSION@";              Filename: "{uninstallexe}"
-
-Name: "{userdesktop}\Aspell (drop files here)";                 Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; Tasks: desktopicon
-Name: "{usersendto}\Aspell";                                    Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; MinVersion: 4,4; Tasks: sendtoicon
+Name: "{commondesktop}\Aspell (drop files here)";               Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; Tasks: desktopicon
 
 
 [UninstallDelete]
