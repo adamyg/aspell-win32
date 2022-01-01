@@ -228,6 +228,47 @@ function(source_file_compile_options SOURCE_FILE)
 endfunction()
 
 ################################################################################
+# Package version
+#
+# Example:
+#   set(MY_PROGRAM_VERSION "2.5.1")
+#   setup_package_version_variables(MY_PROGRAM)
+#
+#   Macro also sets MY_PROGRAM_VERSION_COUNT to the number of version components
+#   and MY_PROGRAM_VERSION_BUILD if the version number has 4 components (e.g., "2.5.1.0")
+#
+################################################################################
+macro (setup_package_version_variables _packageName)
+    if (NOT DEFINED ${_packageName}_VERSION_COUNT)
+        string (REGEX MATCHALL "[0-9]+" _versionComponents "${${_packageName}_VERSION}")
+        list (LENGTH _versionComponents _len)
+        if (${_len} GREATER 0)
+            list(GET _versionComponents 0 ${_packageName}_VERSION_MAJOR)
+        else()
+            set(${_packageName}_VERSION_MAJOR 0)
+        endif()
+        if (${_len} GREATER 1)
+            list(GET _versionComponents 1 ${_packageName}_VERSION_MINOR)
+        else()
+            set(${_packageName}_VERSION_MINOR 0)
+        endif()
+        if (${_len} GREATER 2)
+            list(GET _versionComponents 2 ${_packageName}_VERSION_PATCH)
+        else()
+            set(${_packageName}_VERSION_PATCH 0)
+        endif()
+        if (${_len} GREATER 3)
+            list(GET _versionComponents 3 ${_packageName}_VERSION_BUILD)
+        else()
+            set(${_packageName}_VERSION_BUILD 0)
+        endif()
+        set (${_packageName}_VERSION_COUNT ${_len})
+    else()
+        set (${_packageName}_VERSION_COUNT 0)
+    endif()
+endmacro()
+
+################################################################################
 # Default properties of visual studio projects
 ################################################################################
 set(DEFAULT_CXX_PROPS "${CMAKE_CURRENT_LIST_DIR}/DefaultCXX.cmake")

@@ -41,9 +41,20 @@ jobs:
     - name: Windows, compiling
       shell: cmd
       run: |
-        call ./mk-cmake --release --build --vs140
+        call ./mk-cmake --vs140 --release --build
 
     - name: Windows, package
+      shell: cmd
+      run: |
+        call ./mk-cmake --vs140 --package-only
+
+    - name: Windows, publish
+      uses: actions/upload-artifact@v2
+      with:
+        name: install-win32.vs140
+        path: ./installer.vs140/*
+
+    - name: Windows, tarball
       uses: actions/upload-artifact@v2
       with:
         name: package-win32.vs140

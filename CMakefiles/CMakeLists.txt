@@ -97,6 +97,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 
+set(ASPELL_VERSION "0.60.8-1")
+setup_package_version_variables(ASPELL)
+
 add_subdirectory(libaspell)
 add_subdirectory(libaspell/man-pages)
 add_subdirectory(libaspell/html-doc)

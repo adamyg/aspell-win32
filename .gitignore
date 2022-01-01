@@ -6,6 +6,8 @@ output.vs*/
 Dictionaries/
 Personal/
 ref/
+install.bat
+uninstall.bat
 
 # Prerequisites
 *.d

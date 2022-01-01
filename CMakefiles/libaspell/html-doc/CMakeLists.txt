@@ -50,7 +50,7 @@ foreach(html_doc ${MANUAL_PAGES})
         add_custom_target(
                 html_doc_${html_doc_name} ALL
                 COMMENT "building: html_doc [${html_doc_name}.texi]"
-                COMMAND echo @set VERSION 0.60.8 > version.texi
+                COMMAND echo @set VERSION ${ASPELL_VERSION} > version.texi
                 COMMAND ${MAKEINFO_PATH}/perl ${MAKEINFO_PATH}/makeinfo --html --enable-encoding --css-include=../../../submodule/aspell/manual/custom.css --output=${HTML_OUTPUT_DIRECTORY}/${html_doc_name} ${html_doc}
                 VERBATIM
                 )

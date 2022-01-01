@@ -1,0 +1,141 @@
+;
+; aspell - Inno Setup 0.60.x
+;
+
+#define SourceDir "@ISS_SOURCE_DIRECTORY@"
+#define OutputDir "@ISS_OUTPUT_DIRECTORY@"
+
+[Setup]
+AppName=GNU Aspell
+AppVerName=GNU Aspell @ASPELL_VERSION_MAJOR@.@ASPELL_VERSION_MINOR@.@ASPELL_VERSION_PATCH@ (build: @ASPELL_VERSION_BUILD@)
+AppPublisher=GNU
+AppPublisherURL=http://aspell.net
+AppSupportURL=http://mail.gnu.org/mailman/listinfo/aspell-user
+AppUpdatesURL=https://github.com/adamyg/aspell-win32
+DefaultDirName={pf}\Aspell
+DefaultGroupName=Aspell
+AllowNoIcons=yes
+InfoBeforeFile=@ISS_SOURCE_DIRECTORY@\COPYING
+DirExistsWarning=no
+DisableStartupPrompt=yes
+OutputDir=@ISS_SETUP_DIRECTORY@
+OutputBaseFilename=aspell-@ASPELL_VERSION@-setup
+
+[Tasks]
+Name: "desktopicon"; Description: "Create a &desktop icon (drag a file from the explorer onto it)"; GroupDescription: "Additional icons:"; Flags: unchecked;
+Name: "sendtoicon";  Description: "Create a &send-to link (right click on a file and send it to aspell)"; GroupDescription: "Additional icons:"; Flags: unchecked;
+
+[Files]
+
+; Binaries
+Source: "{#OutputDir}\Release\bin\aspell.exe";                  DestDir: "{app}\bin"; CopyMode: alwaysoverwrite
+Source: "{#OutputDir}\Release\bin\word-list-compress.exe";      DestDir: "{app}\bin"; CopyMode: alwaysoverwrite
+Source: "{#OutputDir}\Release\bin\*.dll";                       DestDir: "{app}\bin"; CopyMode: alwaysoverwrite; Flags: sharedfile
+
+; Libraries
+Source: "{#OutputDir}\Release\lib\*";                           DestDir: "{app}\lib"; CopyMode: alwaysoverwrite; Flags: sharedfile
+
+; Interface
+Source: "{#SourceDir}\interfaces\cc\aspell.h";                  DestDir: "{app}\include"; CopyMode: alwaysoverwrite
+Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\include"; CopyMode: alwaysoverwrite
+
+; Documentation
+Source: "{#SourceDir}\README.md";                               DestDir: "{app}"; CopyMode: alwaysoverwrite
+Source: "{#SourceDir}\COPYING";                                 DestDir: "{app}"; CopyMode: alwaysoverwrite
+
+Source: "{#OutputDir}\man\*";                                   DestDir: "{app}\doc\man"; CopyMode: alwaysoverwrite
+Source: "{#OutputDir}\html\aspell\*";                           DestDir: "{app}\doc\aspell"; CopyMode: alwaysoverwrite
+Source: "{#OutputDir}\html\aspell-dev\*";                       DestDir: "{app}\doc\aspell-dev"; CopyMode: alwaysoverwrite
+
+
+[Registry]
+
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: ""; ValueData: {app}; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
+
+; Aspell version
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@ASPELL_VERSION_MAJOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@ASPELL_VERSION_MINOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@ASPELL_VERSION_PATCH@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@ASPELL_VERSION_BUILD@"; Flags: uninsdeletekey
+
+; Library versions
+Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "AspellVersion"; ValueData: "16";  Flags: uninsdeletekey
+
+[INI]
+
+; Shortcuts
+Filename: "{app}\doc\Aspell.url";                               Section: "InternetShortcut"; Key: "URL"; String: "http://aspell.net"
+Filename: "{app}\doc\Aspell-win32.url";                         Section: "InternetShortcut"; Key: "URL"; String: "https://github.com/adamyg/aspell-win32"
+Filename: "{app}\doc\Aspell-support.url";                       Section: "InternetShortcut"; Key: "URL"; String: "http://mail.gnu.org/mailman/listinfo/aspell-user"
+Filename: "{app}\doc\Aspell-dictionaries.url";                  Section: "InternetShortcut"; Key: "URL"; String: "http://aspell.net/win32/dicts"
+
+
+[Icons]
+
+Name: "{group}\Aspell homepage\Aspell home";                    Filename: "{app}\doc\Aspell.url"
+Name: "{group}\Aspell homepage\Aspell (Win32)";                 Filename: "{app}\doc\Aspell-win32.url"
+Name: "{group}\Aspell homepage\Aspell support";                 Filename: "{app}\doc\Aspell-support.url"
+Name: "{group}\Aspell Manual";                                  Filename: "{app}\doc\aspell\index.html"
+Name: "{group}\Download dictionaries";                          Filename: "{app}\doc\Aspell-dictionaries.url"
+Name: "{group}\Uninstall Aspell-@ASPELL_VERSION@";              Filename: "{uninstallexe}"
+
+Name: "{userdesktop}\Aspell (drop files here)";                 Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; Tasks: desktopicon
+Name: "{usersendto}\Aspell";                                    Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; MinVersion: 4,4; Tasks: sendtoicon
+
+
+[UninstallDelete]
+
+; Remove internet shortcuts
+Type: files; Name: "{app}\doc\Aspell.url"
+Type: files; Name: "{app}\doc\Aspell-win32.url"
+Type: files; Name: "{app}\doc\Aspell-support.url"
+Type: files; Name: "{app}\doc\Aspell-dictionaries.url"
+
+; Remove directories (if empty)
+Type: dirifempty; Name: "{app}\doc\html";
+Type: dirifempty; Name: "{app}\doc\man";
+Type: dirifempty; Name: "{app}\doc";
+Type: dirifempty; Name: "{app}\shared";
+Type: dirifempty; Name: "{app}\etc";
+Type: dirifempty; Name: "{app}";
+
+
+[Code]
+
+function AspellInstalled(var version, uninstallcmd:string):boolean;
+var major,minor,patch,build:Cardinal;
+begin
+        Result := RegQueryDWordValue(HKLM, 'Software\Aspell', 'MajorVersion', major)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell', 'MinorVersion', minor)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell', 'PatchVersion', patch)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell', 'BuildVersion', build);
+
+        if not RegQueryStringValue(HKLM, 'Software\Aspell', 'UninstallString', uninstallcmd)
+        then if not RegQueryStringValue(HKLM, 'Software\Aspell', 'Uninstall', uninstallcmd)
+        then RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\Aspell', 'UninstallString', uninstallcmd);
+        version := IntToStr(major)+'.'+IntToStr(minor)+'.'+IntToStr(patch)+'-'+IntToStr(build);
+end;
+
+function InitializeSetup(): Boolean;
+        var version, uninst :string;
+            msgres, execres :integer;
+begin
+        Result:=true;
+        if AspellInstalled(version,uninst)
+        then
+        begin
+                msgres:= MsgBox('Aspell-'+version+' is currently installed.'+#13#13 +'Do you want to uninstall it first?.', mbError, MB_YESNOCANCEL);
+                case msgres of
+                IdYes: begin
+                        Exec(uninst, '', '', SW_SHOWNORMAL, true, execres);
+                        Result:=InitializeSetup();
+                        end;
+                IdCancel:
+                         Result:=false;
+                IdNo: ;
+                end;
+        end;
+end;
+

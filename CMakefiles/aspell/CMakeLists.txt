@@ -1,5 +1,5 @@
 #
-# aspell: 4.60.8
+# aspell: 0.60.8
 #
 
 set(PROJECT_NAME aspell)
@@ -115,4 +115,34 @@ target_link_options(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Debug>:/DEBUG:FULL>
         )
 
+
+###############################################################################
+# Package
+###############################################################################
+
+option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
+if (PACKAGE_INTERACTIVE)
+        set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
+        set(ISS_OPTIONS "")
+else()
+        set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
+        set(ISS_OPTIONS "/q")
+endif()
+
+set(ISS_SOURCE_DIRECTORY "../../submodule/aspell/")
+set(ISS_OUTPUT_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
+set(ISS_SETUP_DIRECTORY "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}")
+
+configure_file(
+        "${CMAKE_CURRENT_BINARY_DIR}../../../win32port/Aspell.iss.in"
+        Aspell.iss @ONLY
+        )
+
+add_custom_target(package
+        COMMENT "Packaging: aspell-${ASPELL_VERSION}"
+        DEPENDS Aspell.iss
+        COMMAND ${ISS_COMPILER} ${ISS_OPTIONS} Aspell.iss
+        )
+        
 #end
+
