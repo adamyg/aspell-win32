@@ -123,10 +123,8 @@ target_link_options(${PROJECT_NAME} PRIVATE
 option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
 if (PACKAGE_INTERACTIVE)
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
-        set(ISS_OPTIONS "")
 else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
-        set(ISS_OPTIONS "/q")
 endif()
 
 set(ISS_SOURCE_DIRECTORY "../../submodule/aspell/")
@@ -139,9 +137,9 @@ configure_file(
         )
 
 add_custom_target(package
-        COMMENT "Packaging: aspell-${ASPELL_VERSION}"
+        COMMENT "Packaging: aspell-${ASPELL_VERSION} [${ISS_COMPILER} Aspell.iss]"
         DEPENDS Aspell.iss
-        COMMAND ${ISS_COMPILER} ${ISS_OPTIONS} Aspell.iss
+        COMMAND ${ISS_COMPILER} Aspell.iss
         )
         
 #end

@@ -31,7 +31,7 @@ jobs:
         @set PERL=c:/Strawberry/perl/bin/perl
         git submodule init
         git submodule update
-        call ./mk-cmake --release --prime --vs140
+        call ./mk-cmake --vs140 --release --prime
         choco install innosetup --version=5.6.1 --force
         @rem dir c:\
         @rem dir c:\tools
