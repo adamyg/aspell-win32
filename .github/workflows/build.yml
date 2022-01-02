@@ -1,0 +1,63 @@
+name: build
+on: [push]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: ilammy/msvc-dev-cmd@v1
+
+#   - name: Install Cygwin
+#     uses: egor-tensin/setup-cygwin@v3
+#     with:
+#       platform: x64
+#       packages: perl texinfo
+
+    - name: Install Windows 8.1 SDK
+      shell: powershell
+      run: |
+        Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+        Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+
+    - name: Windows, generating enviroment
+      shell: cmd
+      run: |
+        @set PERL=c:/Strawberry/perl/bin/perl
+        git submodule init
+        git submodule update
+        call ./mk-cmake --vs140 --release --prime
+        choco install innosetup --version=5.6.1 --force
+        @rem dir c:\
+        @rem dir c:\tools
+        @rem dir c:\msys64
+        @rem dir c:\msys64\usr\bin
+
+    - name: Windows, compiling
+      shell: cmd
+      run: |
+        call ./mk-cmake --vs140 --release --build
+
+    - name: Windows, package
+      shell: cmd
+      run: |
+        call ./mk-cmake --vs140 --package-only
+        @exit 0
+
+    - name: Windows, publish
+      uses: actions/upload-artifact@v2
+      with:
+        name: install-win32.vs140
+        path: ./installer.vs140/*
+
+    - name: Windows, tarball
+      uses: actions/upload-artifact@v2
+      with:
+        name: package-win32.vs140
+        path: ./output.vs140/*
+

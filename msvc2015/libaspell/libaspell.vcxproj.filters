@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{c8d510af-d0f9-4304-aaa0-f7b7700d09eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lib">
+      <UniqueIdentifier>{6790957b-e887-4644-a663-a358bef96fa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{aea4e335-6503-4e46-af3b-3c1a69e7ae3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{0a44e7af-0083-4606-ab06-82ed3066d07e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\filter">
+      <UniqueIdentifier>{a3c6d703-9d4d-4e23-8127-dcf6e15dd493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\tokenizer">
+      <UniqueIdentifier>{d1dd616f-8482-4119-965f-2ce21b20e07c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\speller">
+      <UniqueIdentifier>{f4b063e8-611f-4c5a-b41d-7be6d239463e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\speller">
+      <UniqueIdentifier>{2a598049-bd27-4b4c-a43f-8703e2f3470a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\win32port">
+      <UniqueIdentifier>{7e7ffb1a-8a4b-48b9-b00d-8221d1e2f4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\win32port">
+      <UniqueIdentifier>{7766ab3c-b4f8-4c3c-a817-33dd30f45831}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\submodule\aspell\lib\can_have_error-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\config-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\document_checker-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\dummy.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\error-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\filter-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\find_speller.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\info-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\mutable_container-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\new_checker.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\new_config.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\new_filter.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\new_fmode.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\speller-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\string_enumeration-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\string_list-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\string_map-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\string_pair_enumeration-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\lib\word_list-c.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\cache.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\can_have_error.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\config.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\convert.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\document_checker.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\error.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\errors.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\file_data_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\file_util.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\filter.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\fstream.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\getdata.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\gettext_init.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\info.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\iostream.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\itemize.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\objstack.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\posib_err.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\speller.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\string.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\string_list.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\string_map.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\strtonum.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\tokenizer.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\common\version.cpp">
+      <Filter>Header Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\context.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\email.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\markdown.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\nroff.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\sgml.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\tex.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\texinfo.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\url.cpp">
+      <Filter>Source Files\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\tokenizer\basic.cpp">
+      <Filter>Source Files\tokenizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\affix.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\data.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\editdist.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\language.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\leditdist.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\multi_ws.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\phonet.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\phonetic.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\primes.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\readonly_ws.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\speller_impl.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\suggest.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\typo_editdist.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\writable.cpp">
+      <Filter>Source Files\speller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\dirent.c">
+      <Filter>Source Files\win32port</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\dirs.cpp">
+      <Filter>Source Files\win32port</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\submodule\aspell\lib\filter_entry.hpp">
+      <Filter>Header Files\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\asc_ctype.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\basic_list.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\block_slist.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\block_slist-t.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\cache.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\cache-t.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\can_have_error.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\char_vector.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\clone_ptr.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\clone_ptr-t.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\config.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\convert.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\copy_ptr.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\document_checker.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\enumeration.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\error.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\errors.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\file_data_util.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\file_util.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\filter_char.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\filter_char_vector.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\filter_debug.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\fstream.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\generic_copy_ptr.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\generic_copy_ptr-t.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\getdata.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\gettext.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\hash.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\hash_fun.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\hash-t.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\indiv_filter.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\info.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\iostream.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\istream_enumeration.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\itemize.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\key_info.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\lock.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\lsort.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\mutable_container.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\mutable_string.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\ndebug.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\objstack.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\ostream.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\parm_string.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\posib_err.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\simple_string.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\speller.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\stack_ptr.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string_enumeration.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string_list.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string_map.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string_pair.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\string_pair_enumeration.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\strtonum.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\suggestions.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\tokenizer.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\type_id.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\vararray.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\vector.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\word_list.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\filter.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\common\istream.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\affix.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\asuggest.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\block_vector.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\check_list.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data_id.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data_util.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\editdist.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\editdist2.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\language.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\leditdist.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\matrix.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\phonet.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\phonetic.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\primes.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\speller_impl.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\suggest.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\typo_editdist.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\vector_hash.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\vector_hash-t.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\weights.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\wordinfo.hpp">
+      <Filter>Header Files\speller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\dirs.h">
+      <Filter>Source Files\win32port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\dirent.h">
+      <Filter>Header Files\win32port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\settings.h">
+      <Filter>Header Files\win32port</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

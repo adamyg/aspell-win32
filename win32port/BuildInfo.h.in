@@ -1,0 +1,12 @@
+#ifndef BUILDINFO_H_INCLUDED
+#define BUILDINFO_H_INCLUDED
+#pragma once
+
+/*libaspell*/
+#define VERSION "@ASPELL_VERSION@"
+#define PACKAGE_VERSION "@ASPELL_APPNAME@"
+
+/*dirs and iss*/
+#define ASPELL_APPNAME "@ASPELL_APPNAME@"
+
+#endif //BUILDINFO_H_INCLUDED

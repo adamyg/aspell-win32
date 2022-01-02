@@ -1,0 +1,12 @@
+*.opendb
+*.db
+.vs/
+Debug/
+DebugStatic/
+DebugShared/
+Release/
+ReleaseStatic/
+ReleaseShared/
+X64/
+My Advisor Results*/
+

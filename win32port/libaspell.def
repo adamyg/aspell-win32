@@ -1,0 +1,173 @@
+;$Id: $
+;
+; libaspell library definition (4.60.8)
+;
+;DESCRIPTION "libaspell"
+EXPORTS
+
+; ----  common/
+
+; gettext_init.cpp
+        aspell_gettext_init
+
+; version.cpp
+        aspell_version_string
+
+; ----  lib/
+
+; can_have_error-c.cpp
+        aspell_error_number
+        aspell_error_message
+        aspell_error
+        delete_aspell_can_have_error
+
+; config-c.cpp
+        aspell_key_info_enumeration_at_end
+        aspell_key_info_enumeration_next
+        delete_aspell_key_info_enumeration
+        aspell_key_info_enumeration_clone
+        aspell_key_info_enumeration_assign
+        new_aspell_config
+        delete_aspell_config
+        aspell_config_clone
+        aspell_config_assign
+        aspell_config_error_number
+        aspell_config_error_message
+        aspell_config_error
+        aspell_config_set_extra
+        aspell_config_keyinfo
+        aspell_config_possible_elements
+        aspell_config_get_default
+        aspell_config_elements
+        aspell_config_replace
+        aspell_config_remove
+        aspell_config_have
+        aspell_config_retrieve
+        aspell_config_retrieve_list
+        aspell_config_retrieve_bool
+        aspell_config_retrieve_int
+
+; document_checker-c.cpp
+        delete_aspell_document_checker
+        aspell_document_checker_error_number
+        aspell_document_checker_error_message
+        aspell_document_checker_error
+        new_aspell_document_checker
+        to_aspell_document_checker
+        aspell_document_checker_reset
+        aspell_document_checker_process
+        aspell_document_checker_process_wide
+        aspell_document_checker_next_misspelling
+        aspell_document_checker_next_misspelling_adj
+        aspell_document_checker_filter
+
+; error-c.cpp
+        aspell_error_is_a
+
+; filter-c.cpp
+        delete_aspell_filter
+        aspell_filter_error_number
+        aspell_filter_error_message
+        aspell_filter_error
+        to_aspell_filter
+
+; info-c.cpp
+        get_aspell_module_info_list
+        aspell_module_info_list_empty
+        aspell_module_info_list_size
+        aspell_module_info_list_elements
+        get_aspell_dict_info_list
+        aspell_dict_info_list_empty
+        aspell_dict_info_list_size
+        aspell_dict_info_list_elements
+        aspell_module_info_enumeration_at_end
+        aspell_module_info_enumeration_next
+        delete_aspell_module_info_enumeration
+        aspell_module_info_enumeration_clone
+        aspell_module_info_enumeration_assign
+        aspell_dict_info_enumeration_at_end
+        aspell_dict_info_enumeration_next
+        delete_aspell_dict_info_enumeration
+        aspell_dict_info_enumeration_clone
+        aspell_dict_info_enumeration_assign
+
+; mutable_container-c.cpp
+        aspell_mutable_container_add
+        aspell_mutable_container_remove
+        aspell_mutable_container_clear
+        aspell_mutable_container_to_mutable_container
+
+; speller-c.cpp
+        new_aspell_speller
+        to_aspell_speller
+        delete_aspell_speller
+        aspell_speller_error_number
+        aspell_speller_error_message
+        aspell_speller_error
+        aspell_speller_config
+        aspell_speller_check
+        aspell_speller_check_wide
+        aspell_speller_add_to_personal
+        aspell_speller_add_to_personal_wide
+        aspell_speller_add_to_session
+        aspell_speller_add_to_session_wide
+        aspell_speller_personal_word_list
+        aspell_speller_session_word_list
+        aspell_speller_main_word_list
+        aspell_speller_save_all_word_lists
+        aspell_speller_clear_session
+        aspell_speller_suggest
+        aspell_speller_suggest_wide
+        aspell_speller_store_replacement
+        aspell_speller_store_replacement_wide
+
+; string_enumeration-c.cpp
+        delete_aspell_string_enumeration
+        aspell_string_enumeration_clone
+        aspell_string_enumeration_assign
+        aspell_string_enumeration_at_end
+        aspell_string_enumeration_next
+        aspell_string_enumeration_next_wide
+
+; string_list-c.cpp
+        new_aspell_string_list
+        aspell_string_list_empty
+        aspell_string_list_size
+        aspell_string_list_elements
+        aspell_string_list_add
+        aspell_string_list_remove
+        aspell_string_list_clear
+        aspell_string_list_to_mutable_container
+        delete_aspell_string_list
+        aspell_string_list_clone
+        aspell_string_list_assign
+
+; string_map-c.cpp
+        new_aspell_string_map
+        aspell_string_map_add
+        aspell_string_map_remove
+        aspell_string_map_clear
+        aspell_string_map_to_mutable_container
+        delete_aspell_string_map
+        aspell_string_map_clone
+        aspell_string_map_assign
+        aspell_string_map_empty
+        aspell_string_map_size
+        aspell_string_map_elements
+        aspell_string_map_insert
+        aspell_string_map_replace
+        aspell_string_map_lookup
+
+; string_pair_enumeration-c.cpp
+        aspell_string_pair_enumeration_at_end
+        aspell_string_pair_enumeration_next
+        delete_aspell_string_pair_enumeration
+        aspell_string_pair_enumeration_clone
+        aspell_string_pair_enumeration_assign
+
+; word_list-c.cpp
+        aspell_word_list_empty
+        aspell_word_list_size
+        aspell_word_list_elements
+
+;end

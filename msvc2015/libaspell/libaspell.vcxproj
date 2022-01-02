@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugShared|Win32">
+      <Configuration>DebugShared</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugShared|x64">
+      <Configuration>DebugShared</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseShared|Win32">
+      <Configuration>ReleaseShared</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseShared|x64">
+      <Configuration>ReleaseShared</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\submodule\aspell\common\cache.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\can_have_error.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\config.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\convert.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\document_checker.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\error.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\errors.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\file_data_util.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\file_util.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\filter.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\fstream.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\getdata.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\gettext_init.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\info.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\iostream.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\itemize.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\objstack.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\posib_err.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\speller.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\string.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\string_list.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\string_map.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\strtonum.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\tokenizer.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\common\version.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\can_have_error-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\config-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\document_checker-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\dummy.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\error-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\filter-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\find_speller.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\info-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\mutable_container-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\new_checker.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\new_config.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\new_filter.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\new_fmode.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\speller-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\string_enumeration-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\string_list-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\string_map-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\string_pair_enumeration-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\lib\word_list-c.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\context.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\email.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\markdown.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\nroff.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\sgml.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\tex.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\texinfo.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\filter\url.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\affix.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\data.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\editdist.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\language.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\leditdist.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\multi_ws.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\phonet.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\phonetic.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\primes.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\readonly_ws.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\speller_impl.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\suggest.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\typo_editdist.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\speller\default\writable.cpp" />
+    <ClCompile Include="..\..\submodule\aspell\modules\tokenizer\basic.cpp" />
+    <ClCompile Include="..\..\win32port\dirent.c" />
+    <ClCompile Include="..\..\win32port\dirs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\submodule\aspell\common\asc_ctype.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\basic_list.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\block_slist-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\block_slist.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\cache-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\cache.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\can_have_error.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\char_vector.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\clone_ptr-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\clone_ptr.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\config.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\convert.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\copy_ptr.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\document_checker.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\enumeration.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\error.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\errors.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\file_data_util.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\file_util.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\filter.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\filter_char.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\filter_char_vector.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\filter_debug.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\fstream.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\generic_copy_ptr-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\generic_copy_ptr.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\getdata.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\gettext.h" />
+    <ClInclude Include="..\..\submodule\aspell\common\hash-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\hash.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\hash_fun.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\indiv_filter.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\info.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\iostream.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\istream.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\istream_enumeration.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\itemize.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\key_info.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\lock.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\lsort.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\mutable_container.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\mutable_string.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\ndebug.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\objstack.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\ostream.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\parm_string.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\posib_err.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\simple_string.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\speller.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\stack_ptr.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string_enumeration.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string_list.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string_map.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string_pair.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\string_pair_enumeration.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\strtonum.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\suggestions.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\tokenizer.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\type_id.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\vararray.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\vector.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\common\word_list.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\lib\filter_entry.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\affix.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\asuggest.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\block_vector.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\check_list.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data_id.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\data_util.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\editdist.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\editdist2.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\language.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\leditdist.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\matrix.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\phonet.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\phonetic.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\primes.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\speller_impl.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\suggest.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\typo_editdist.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\vector_hash-t.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\vector_hash.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\weights.hpp" />
+    <ClInclude Include="..\..\submodule\aspell\modules\speller\default\wordinfo.hpp" />
+    <ClInclude Include="..\..\win32port\dirs.h" />
+    <ClInclude Include="..\..\win32port\settings.h" />
+    <ClInclude Include="..\..\win32port\dirent.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D2998A79-52C1-4BA1-B166-7AC6C0AA5242}</ProjectGuid>
+    <RootNamespace>libaspell</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DebugShared|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'">
+    <OutDir>$(SolutionDir)Debug\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)-0.60</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>$(ProjectName)-0.60</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|x64'">
+    <TargetName>$(ProjectName)-0.60</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|x64'">
+    <TargetName>$(ProjectName)-0.60</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <OutputFile>$(OutDir)$(TargetName)-0.60$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapExports>true</MapExports>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(TargetName)-0.60$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <OutputFile>$(OutDir)$(TargetName)-0.60$(TargetExt)</OutputFile>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

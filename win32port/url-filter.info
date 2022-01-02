@@ -1,0 +1,14 @@
+# URL filter option file
+
+#This Filter is usable with the following version(s) of Aspell
+ASPELL >=0.50
+
+#This line will be printed when typing `aspell help url'
+DESCRIPTION filter to skip URL like constructs
+
+#empty url orginally empty, add default values; MSVC/WC wont allow empty arrays.
+STATIC filter
+OPTION url
+TYPE bool
+DEFAULT none
+ENDOPTION
