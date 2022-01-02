@@ -24,8 +24,7 @@
 #define C_EXPORT extern "C"
 #endif
 
-#define VERSION "0.60.8.0"
-#define PACKAGE_VERSION "aspell-0.60.8"
+#include "BuildInfo.h"
 
 //  -------------------------------------------------------------------------------------
 

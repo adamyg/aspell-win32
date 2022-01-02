@@ -1,5 +1,5 @@
 #
-# libaspell: 4.60.8
+# libaspell: 0.60.x
 #
 
 set(PROJECT_NAME libaspell)
@@ -225,12 +225,17 @@ set(ALL_FILES
 # Target
 ################################################################################
 
+include_directories(${CMAKE_BINARY_DIR})
+configure_file(
+        "../../win32port/BuildInfo.h.in"
+        "${CMAKE_BINARY_DIR}/BuildInfo.h" @ONLY
+        )
+
 add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
-set(SHARED_VERSION "-0.60")
-add_library(${PROJECT_NAME}${SHARED_VERSION} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
-use_props(${PROJECT_NAME}${SHARED_VERSION} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
+add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
+use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
 
 ################################################################################
@@ -242,7 +247,7 @@ include_directories(PUBLIC
         )
 
 include_directories(PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/common"
         )
 
@@ -257,7 +262,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
        ${DEFAULT_CXX_EXCEPTION_HANDLING}
        )
 
-target_compile_options(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
+target_compile_options(${PROJECT_NAME}${ASPELL_SHARED_VERSION} PRIVATE
        /FI../../win32port/msvcpatch.h;
        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
        ${DEFAULT_CXX_EXCEPTION_HANDLING}
@@ -268,7 +273,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY
         "$<$<CONFIG:Release>:MultiThreadedDLL>"         ## -MD
         )
 
-set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION} PROPERTY
+set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION} PROPERTY
         "$<$<CONFIG:Debug>:MultiThreadedDebug>"         ## -MTd
         "$<$<CONFIG:Release>:MultiThreaded>"            ## -MT
         )

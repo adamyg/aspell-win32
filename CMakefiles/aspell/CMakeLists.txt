@@ -40,14 +40,15 @@ use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 # Include directories
 ################################################################################
 
+include_directories(${CMAKE_BINARY_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/PDCurses"
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/interfaces/cc;"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/common;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/interfaces/cc"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/common"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/modules/speller/default"
         )
 
@@ -127,19 +128,19 @@ else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
 endif()
 
-set(ISS_SOURCE_DIRECTORY "../../submodule/aspell/")
+set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}")
+set(ISS_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/../submodule/aspell/")
 set(ISS_OUTPUT_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
-set(ISS_SETUP_DIRECTORY "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}")
 
 configure_file(
-        "${CMAKE_CURRENT_BINARY_DIR}../../../win32port/Aspell.iss.in"
-        Aspell.iss @ONLY
+        "../../win32port/Aspell.iss.in"
+        ${CMAKE_BINARY_DIR}/Aspell.iss @ONLY
         )
 
 add_custom_target(package
         COMMENT "Packaging: aspell-${ASPELL_VERSION} [${ISS_COMPILER} Aspell.iss]"
-        DEPENDS Aspell.iss
-        COMMAND ${ISS_COMPILER} Aspell.iss
+        DEPENDS ${CMAKE_BINARY_DIR}/Aspell.iss
+        COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Aspell.iss
         )
 
 #end
