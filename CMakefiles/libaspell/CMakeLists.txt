@@ -269,13 +269,11 @@ target_compile_options(${PROJECT_NAME}${ASPELL_SHARED_VERSION} PRIVATE
        )
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY
-        "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"      ## -MDd
-        "$<$<CONFIG:Release>:MultiThreadedDLL>"         ## -MD
+        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL" ## -MD[d]
         )
 
 set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION} PROPERTY
-        "$<$<CONFIG:Debug>:MultiThreadedDebug>"         ## -MTd
-        "$<$<CONFIG:Release>:MultiThreaded>"            ## -MT
+        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"    ## -MT[d]
         )
 
         # If Aspell is compiled with WIN32_RELOCATABLE=1, it can be run from any directory:
