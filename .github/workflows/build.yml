@@ -47,6 +47,7 @@ jobs:
       shell: cmd
       run: |
         call ./mk-cmake --vs140 --package-only
+        @exit 0
 
     - name: Windows, publish
       uses: actions/upload-artifact@v2

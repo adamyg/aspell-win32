@@ -140,8 +140,7 @@ add_custom_target(package
         COMMENT "Packaging: aspell-${ASPELL_VERSION} [${ISS_COMPILER} Aspell.iss]"
         DEPENDS Aspell.iss
         COMMAND ${ISS_COMPILER} Aspell.iss
-        COMMAND exit 0
         )
-        
+
 #end
 
