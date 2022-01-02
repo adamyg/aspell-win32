@@ -123,8 +123,8 @@ if "%1"=="--vs143" (
         echo #  mk-cmake [--release or --debug] [targets] [--cmake {path}] [--vsxxx]
         echo #
         echo #  Options:
+        echo #    --package             package
         echo #    -i, --interactive     enable interactive package creation (during builds)
-        echo #    --package             enable interactive package creation (during builds)
         echo #
         echo #  Targets:
         echo #    --prime               prime only
