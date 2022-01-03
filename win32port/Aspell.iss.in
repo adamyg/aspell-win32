@@ -6,6 +6,7 @@
 #define OutputDir "@ISS_OUTPUT_DIRECTORY@"
 
 [Setup]
+
 AppName=GNU Aspell
 AppVerName=GNU Aspell @ASPELL_VERSION_MAJOR@.@ASPELL_VERSION_MINOR@.@ASPELL_VERSION_PATCH@ (build: @ASPELL_VERSION_BUILD@)
 AppPublisher=GNU
@@ -22,6 +23,7 @@ OutputDir=@ISS_SETUP_DIRECTORY@
 OutputBaseFilename=aspell-@ASPELL_VERSION@-setup
 
 [Tasks]
+
 Name: "desktopicon"; Description: "Create a &desktop icon (drag a file from the explorer onto it)"; GroupDescription: "Additional icons:"; Flags: unchecked;
 Name: "sendtoicon";  Description: "Create a &send-to link (right click on a file and send it to aspell)"; GroupDescription: "Additional icons:"; Flags: unchecked;
 
@@ -34,6 +36,11 @@ Source: "{#OutputDir}\Release\bin\*.dll";                       DestDir: "{app}\
 
 ; Libraries
 Source: "{#OutputDir}\Release\lib\*";                           DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
+
+; Data (*.cmap, *.set and *.kbd)
+Source: "{#SourceDir}\data\*"; Excludes: "Makefile*";           DestDir: "{app}\share"; Flags: ignoreversion sharedfile; AfterInstall: DosToUnix;
+Source: "{#SourceDir}\modules\filter\modes\*";                  DestDir: "{app}\share"; Flags: ignoreversion sharedfile; AfterInstall: DosToUnix;
+Source: "{#SourceDir}\scripts\aspell-import";                   DestDir: "{app}\share"; Flags: ignoreversion sharedfile; AfterInstall: DosToUnix;
 
 ; Interface
 Source: "{#SourceDir}\interfaces\cc\aspell.h";                  DestDir: "{app}\include"; Flags: ignoreversion
@@ -137,3 +144,13 @@ begin
         end;
 end;
 
+procedure DosToUnix();
+var
+        path : String;
+        data : String;
+begin
+        path := ExpandConstant(CurrentFileName);
+        LoadStringFromFile(path, data);
+        StringChangeEx(data, #13#10, #10, True);
+        SaveStringToFile(path, data, False);
+end;
