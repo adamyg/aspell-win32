@@ -296,20 +296,6 @@ aspell_PREFIX_DIR(void)
     if (0 == x_buffer[0]) {
         int len, done = FALSE;
 
-#if defined(_WINDLL)
-        // <DLLPATH>, generally same as INSTALLDIR
-        if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0) {
-            if (len > 4) {
-                if (0 == _stricmp(x_buffer + (len - 4), "bin\\")) {
-                    x_buffer[len - 4] = 0; // ..
-                } else if (0 == _stricmp(x_buffer + (len - 4), "lib\\")) {
-                    x_buffer[len - 4] = 0; // ..
-                }
-            }
-            done = TRUE;
-        }
-#endif  //_WINDLL
-
         // <DLL|EXEPATH>, generally same as INSTALLDIR
         // Note: WIN32_RELOCATABLE style.
         if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0 ||
