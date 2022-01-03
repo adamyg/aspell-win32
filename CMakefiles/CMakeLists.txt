@@ -97,7 +97,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 
-set(ASPELL_APPNAME "aspell-0.60")
+set(ASPELL_APPNAME "Aspell-0.60")
 set(ASPELL_VERSION "0.60.8-1")
 set(ASPELL_SHARED_VERSION "-0.60")
 setup_package_version_variables(ASPELL)
