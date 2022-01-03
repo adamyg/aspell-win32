@@ -521,5 +521,8 @@
     <ClInclude Include="..\..\win32port\settings.h">
       <Filter>Header Files\win32port</Filter>
     </ClInclude>
+    <ClInclude Include="..\BuildInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
