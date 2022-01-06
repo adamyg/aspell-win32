@@ -24,23 +24,28 @@ if "%1"=="--debug" (
         )
 
 if "%1"=="--prime" (
+        set PRIME=yes
         set BUILD=no
+        set PACKAGE=no
         shift
         goto Arguments
         )
 if "%1"=="--build" (
         set PRIME=no
+        set BUILD=yes
+        set PACKAGE=no
         shift
         goto Arguments
         )
 if "%1"=="--package" (
+        set PRIME=no
+        set BUILD=no
         set PACKAGE=yes
         shift
         goto Arguments
         )
-if "%1"=="--package-only" (
-        set PRIME=no
-        set BUILD=no
+
+if "%1"=="--also-package" (
         set PACKAGE=yes
         shift
         goto Arguments
@@ -122,15 +127,15 @@ if "%1"=="--vs143" (
         echo #
         echo #  mk-cmake [--release or --debug] [targets] [--cmake {path}] [--vsxxx]
         echo #
-        echo #  Options:
-        echo #    --package             package
-        echo #    -i, --interactive     enable interactive package creation (during builds)
+        echo #  Prime Options:
+        echo #    -i, --interactive     enable interactive package creation.
         echo #
         echo #  Targets:
         echo #    --prime               prime only
         echo #    --build               build only
-        echo #    --package             also package
-        echo #    --package-only        package only
+        echo #    --package             package only
+        echo #
+        echo #    --also-package        also package
         echo #
         echo #  Toolchains:
         echo #    --vs90   Visual Studio 9 2008
