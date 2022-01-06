@@ -107,6 +107,7 @@ add_subdirectory(libaspell/man-pages)
 add_subdirectory(libaspell/html-doc)
 add_subdirectory(libaspell/example)
 add_subdirectory(libaspell/list-dicts)
+add_subdirectory(libpspell)
 
 add_subdirectory(PDCurses)
 add_subdirectory(PDCurses/firework)
