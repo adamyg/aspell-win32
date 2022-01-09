@@ -22,7 +22,7 @@ OutputBaseFilename=aspell-@DICTIONARY_LANG@-@DICTIONARY_VERSION@-setup
 
 [Files]
 
-Source: "{#SourceDir}\*.*"; Excludes: "Copyright,Makefile*,Readme*,*.cwl"; DestDir: "{app}\dict"; Flags: ignoreversion
+Source: "{#SourceDir}\*.*"; Excludes: "Copyright,Configure,Makefile*,Readme*,*.cwl"; DestDir: "{app}\dict"; Flags: ignoreversion
 
 [Registry]
 
@@ -87,7 +87,7 @@ begin
                          Result:=false;
                 IdNo: ;
                 end;
-        end; 
+        end;
 
         if AspellPath('')=''
         then begin
