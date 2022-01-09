@@ -46,14 +46,15 @@ if "%1"=="--package" (
         goto Arguments
         )
 if "%1"=="--lang" (
+        if "%2"=="" goto Help
+        if "%2"=="ALL" (
+                set DICTIONARY="dictionaries"
+        ) else (
+                set DICTIONARY="dictionary_%2"
+        )
         set PRIME=no
         set BUILD=no
         set PACKAGE=no
-        set DICTIONARY="dictionary_%2"
-        if "%DICTIONARY%"=="" goto Arguments
-        if "%DICTIONARY%"=="dictionary_ALL" (
-                set DICTIONARY="dictionaries"
-        )
         shift
         shift
         goto Arguments
