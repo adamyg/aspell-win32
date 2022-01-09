@@ -195,6 +195,7 @@ foreach(dict_spec ${DICTIONARIES})
                 DEPENDS dictionary_${DICTIONARY_LANG}_import
                 COMMENT "configure: ${DICTIONARY_FILE}"
                 COMMAND set "PATH=${MSVC_OUTPUT_DIRECTORY}/Release/bin;${BASH_PATH};%PATH%" ##FIXME: target
+                COMMAND set "ASPELL_FLAGS=--data-dir=../../../../submodule/aspell/data"
                 COMMAND ${BASH_PATH}/bash "-c" "./configure; make"
                 WORKING_DIRECTORY ${DICTIONARY_SOURCE_DIRECTORY}
                 )
