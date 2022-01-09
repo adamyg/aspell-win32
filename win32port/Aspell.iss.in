@@ -143,10 +143,12 @@ end;
 procedure DosToUnix();
 var
         path : String;
-        data : AnsiString;
+        data : String;
+        ANSIdata : AnsiString;
 begin
         path := ExpandConstant(CurrentFileName);
-        LoadStringFromFile(path, data);
+        LoadStringFromFile(path, ANSIdata);
+        data := String(ANSIData);
         StringChangeEx(data, #13#10, #10, True);
-        SaveStringToFile(path, data, False);
+        SaveStringToFile(path, AnsiString(data), False);
 end;
