@@ -87,7 +87,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"
+     ## "$<$<CONFIG:Release>:NDEBUG;>"  ## libaspell requirement.
         "_WINDOWS;"
         "_MBCS;"
         )
@@ -128,9 +128,9 @@ else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
 endif()
 
-set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}")
+set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
 set(ISS_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/../submodule/aspell/")
-set(ISS_OUTPUT_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
+set(ISS_BUILD_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
 
 configure_file(
         "../../win32port/Aspell.iss.in"

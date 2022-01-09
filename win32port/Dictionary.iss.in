@@ -1,0 +1,102 @@
+;
+; aspell - Inno Setup 0.60.x dictionaries
+;
+
+#define SourceDir "@DICTIONARY_SOURCE_DIRECTORY@"
+
+[Setup]
+
+AppName=GNU Aspell Dictionary @DICTIONARY_NAME@
+AppVerName=Aspell @DICTIONARY_LANG@ Dictionary @DICTIONARY_FILE@ (build: @DICTIONARY_VERSION_BUILD@)
+AppPublisher=GNU
+AppPublisherURL=http://aspell.net
+AppUpdatesURL=https://github.com/adamyg/aspell-win32
+DefaultDirName={code:DefaultAspellPath}
+DefaultGroupName=Aspell
+AllowNoIcons=yes
+InfoBeforeFile=@DICTIONARY_SOURCE_DIRECTORY@/Copyright
+DirExistsWarning=no
+DisableStartupPrompt=yes
+OutputDir=@DICTIONARY_OUTPUT_DIRECTORY@
+OutputBaseFilename=aspell-@DICTIONARY_LANG@-@DICTIONARY_VERSION@-setup
+
+[Files]
+
+Source: "{#SourceDir}\*.*"; Excludes: "Copyright,Makefile*,Readme*,*.cwl"; DestDir: "{app}\dict"; Flags: ignoreversion
+
+[Registry]
+
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: ""; ValueData: {app}; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
+
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@DICTIONARY_VERSION_MAJOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@DICTIONARY_VERSION_MINOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@DICTIONARY_VERSION_PATCH@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@DICTIONARY_VERSION_BUILD@"; Flags: uninsdeletekey
+
+[UninstallDelete]
+
+Type: dirifempty; Name: "{app}\shared";
+Type: dirifempty; Name: "{app}";
+
+[Code]
+
+function AspellPath(Default: String):string;
+var s:string;
+begin
+        RegQueryStringValue(HKLM, 'Software\Aspell', '', s);
+        Result := s;
+end;
+
+function DefaultAspellPath(Default: String): String;
+begin
+        Result := AspellPath('');
+        if Result = ''
+        then Result := ExpandConstant('{pf}')+'\Aspell';
+end;
+
+function DictionaryInstalled(var version, uninstallcmd:string):boolean;
+var major,minor,patch,build:Cardinal;
+begin
+        Result := RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'MajorVersion', major)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'MinorVersion', minor)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'PatchVersion', patch)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'BuildVersion', build);
+
+        if not RegQueryStringValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'UninstallString', uninstallcmd)
+        then if not RegQueryStringValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'Uninstall', uninstallcmd)
+        then RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\Aspell-@DICTIONARY_LANG@', 'UninstallString', uninstallcmd);
+        version := IntToStr(major)+'.'+IntToStr(minor)+'.'+IntToStr(patch)+'-'+IntToStr(build);
+end;
+
+function InitializeSetup(): Boolean;
+var version,uninst:string;
+        msgres,execres:integer;
+begin
+        Result:=true;
+        if DictionaryInstalled(version,uninst)
+        then begin
+                msgres:=MsgBox('Aspell-@DICTIONARY_LANG@-'+version+' is currently installed.'+#13#13 +'Do you want to uninstall it first?.', mbError, MB_YESNOCANCEL);
+                case msgres of
+                IdYes: begin
+                        Exec(uninst, '', '', SW_SHOWNORMAL, true, execres);
+                        Result:=InitializeSetup();
+                        end;
+                IdCancel:
+                         Result:=false;
+                IdNo: ;
+                end;
+        end; 
+
+        if AspellPath('')<>''
+        then begin
+                if MsgBox('Aspell not found. Do you want to abort?', mbConfirmation, MB_YESNO)<>IdYes
+                then Result:=false;
+        end;
+end;
+
+procedure DeInitializeSetup();
+begin
+end;
+

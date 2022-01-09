@@ -1,8 +1,8 @@
 #
-# aspell: 4.60.8
+# aspell: 0.60.8
 #
 
-set(PROJECT_NAME prezip)
+set(PROJECT_NAME prezip-bin)
 set(ROOT_NAMESPACE libaspell)
 
 ################################################################################
@@ -76,7 +76,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"
+     ## "$<$<CONFIG:Release>:NDEBUG;>"  ## libaspell requirement.
         "_WINDOWS;"
         "_MBCS;"
         )

@@ -14,8 +14,8 @@
             /bin            ==> /usr/bin
             /lib            ==> /usr/lib
             /etc            ==> /etc/aspell.conf
-            /share          ==> /usr/local/lib/aspell
-                                /usr/local/share/aspell
+            /share          ==> /usr/lib/aspell
+            /dict           ==> /usr/share/aspell
             /include        ==> /usr/include
             /doc
 
@@ -32,6 +32,12 @@
           o ASPELL_CONF
           o $HOME/.aspell.conf or X:/User/<user>/.apell.conf
           o X:/Program Files (x86)/aspell-0.60/etc/aspell.conf
+
+    Dictionaries:
+
+          o <APSELL_CONFIG>=<dict-dir>
+          o <APPINSTALL>/dict
+          o <APPINSTALL>/share [data-dir]
 
  */
 
@@ -57,9 +63,9 @@
 #pragma comment(lib, "shfolder.lib")
 #pragma comment(lib, "User32.lib")
 
-static void set_home();
-static int getdlldir(char *buf, int maxlen);
-static int getexedir(char *buf, int maxlen);
+static void set_environment(void);
+static int  getdlldir(char *buf, int maxlen);
+static int  getexedir(char *buf, int maxlen);
 static void unixpath(char *path);
 
 
@@ -179,6 +185,42 @@ aspell_CONF_DIR(void)
  *  Retrieve global/share configuration path, equivalent to '/usr/share/aspell'.
  *
  *      <DLL|EXEPATH>
+  *          <path>\dict\
+ *
+ *      <DATA_DIR>
+ */
+extern "C" const char *
+aspell_DICT_DIR(void)
+{
+    static char x_buffer[MAX_PATH];
+
+    if (0 == x_buffer[0]) {
+        int len, done = FALSE;
+
+        // <DLL|EXEPATH>, generally same as INSTALLDIR
+        if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0 ||
+                        (len = getexedir(x_buffer, sizeof(x_buffer))) > 0) {
+            _snprintf(x_buffer + len, sizeof(x_buffer) - len, "/dict");
+            x_buffer[sizeof(x_buffer) - 1] = 0;
+            if (0 == _access(x_buffer, 0)) {
+                done = TRUE;
+            }
+        }
+
+        if (! done) { // default=<data-dict>
+            strcpy(x_buffer, aspell_DATA_DIR());
+        }
+
+        unixpath(x_buffer);
+    }
+    return x_buffer;
+}
+
+
+/**
+ *  Retrieve global/share configuration path, equivalent to '/usr/share/aspell'.
+ *
+ *      <DLL|EXEPATH>
  *          <path>\share\
  *
  *      <INSTALLPATH>
@@ -222,18 +264,6 @@ aspell_DATA_DIR(void)
             if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, x_buffer))) {
                 len = strlen(x_buffer);
                 _snprintf(x_buffer + len, sizeof(x_buffer) - len, "/%s/share", ASPELL_APPNAME);
-                x_buffer[sizeof(x_buffer) - 1] = 0;
-                if (0 == _access(x_buffer, 0)) {
-                    done = TRUE;
-                }
-            }
-        }
-
-        // <HOME>
-        if (! done)  {
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROFILE, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "/aspell/Dictionaries");
                 x_buffer[sizeof(x_buffer) - 1] = 0;
                 if (0 == _access(x_buffer, 0)) {
                     done = TRUE;
@@ -334,15 +364,39 @@ aspell_PREFIX_DIR(void)
 }
 
 
-
+/**
+ *  Setup the run-time environment.
+ *
+ *      o HOME
+ *      o LANG
+ */
 static void
-set_home(void)
+set_environment(void)
 {
-    const char *home;
+    const char *env;
 
-    if (NULL == (home = getenv("HOME"))) {
-        if (NULL != (home = aspell_HOME_DIR())) {
-            _putenv_s("HOME", home);            // assign HOME
+    if (NULL == (env = getenv("HOME")) || !*env) {
+        if (NULL != (env = aspell_HOME_DIR()) && *env) {
+            _putenv_s("HOME", env);             // assign HOME
+        }
+    }
+
+    // see: get_lang_env
+    if (NULL == (env = getenv("LC_MESSAGES")) || !*env)  {
+        if (NULL == (env = getenv("LANGUAGE")) || !*env) {
+            if (NULL == (env = getenv("LANG")) || !*env) {
+                char iso639[16] = {0}, iso3166[16] = {0}, lang[64] = {0};
+                LCID lcid = GetThreadLocale();
+
+                if (GetLocaleInfoA(lcid, LOCALE_SISO639LANGNAME, iso639, sizeof(iso639)) &&
+		        GetLocaleInfoA(lcid, LOCALE_SISO3166CTRYNAME, iso3166, sizeof(iso3166))) {
+
+                    snprintf(lang, sizeof(lang), "%s_%s", iso639, iso3166); // "9_9"
+                    lang[sizeof(lang) - 1] = '\0';
+
+                    _putenv_s("LANG", lang);    // assign LANG
+                }
+            }
         }
     }
 }
@@ -356,6 +410,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 static int
 getdlldir(char *buf, int maxlen)
 {
+    set_environment();
+
 #if defined(__WATCOMC__)
     HMODULE hm = NULL;
     if (GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
@@ -389,6 +445,7 @@ getdlldir(char *buf, int maxlen)
 static int
 getdlldir(char *buf, int maxlen)
 {
+    set_environment();
     return -1;
 }
 
@@ -398,8 +455,6 @@ getdlldir(char *buf, int maxlen)
 static int
 getexedir(char *buf, int maxlen)
 {
-    set_home();
-
     if (GetModuleFileNameA(NULL, buf, maxlen)) {
         const int len = (int)strlen(buf);
         char *cp;
@@ -443,4 +498,3 @@ unixpath(char *path)
 }
 
 /*end*/
-

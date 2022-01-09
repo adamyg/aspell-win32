@@ -1,9 +1,9 @@
 ;
-; aspell - Inno Setup 0.60.x
+; aspell - Inno Setup 0.60.x application
 ;
 
 #define SourceDir "@ISS_SOURCE_DIRECTORY@"
-#define OutputDir "@ISS_OUTPUT_DIRECTORY@"
+#define BuildDir "@ISS_BUILD_DIRECTORY@"
 
 [Setup]
 
@@ -30,12 +30,12 @@ Name: "sendtoicon";  Description: "Create a &send-to link (right click on a file
 [Files]
 
 ; Binaries
-Source: "{#OutputDir}\Release\bin\aspell.exe";                  DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "{#OutputDir}\Release\bin\word-list-compress.exe";      DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "{#OutputDir}\Release\bin\*.dll";                       DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
+Source: "{#BuildDir}\Release\bin\aspell.exe";                   DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#BuildDir}\Release\bin\word-list-compress.exe";       DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#BuildDir}\Release\bin\*.dll";                        DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
 
 ; Libraries
-Source: "{#OutputDir}\Release\lib\*";                           DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
+Source: "{#BuildDir}\Release\lib\*";                            DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
 
 ; Data (*.cmap, *.set and *.kbd)
 Source: "{#SourceDir}\data\*"; Excludes: "Makefile*";           DestDir: "{app}\share"; Flags: ignoreversion sharedfile; AfterInstall: DosToUnix;
@@ -50,25 +50,24 @@ Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\
 Source: "{#SourceDir}\README.md";                               DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\COPYING";                                 DestDir: "{app}"; Flags: ignoreversion
 
-Source: "{#OutputDir}\man\*";                                   DestDir: "{app}\doc\man"; Flags: ignoreversion
-Source: "{#OutputDir}\html\aspell\*";                           DestDir: "{app}\doc\aspell"; Flags: ignoreversion
-Source: "{#OutputDir}\html\aspell-dev\*";                       DestDir: "{app}\doc\aspell-dev"; Flags: ignoreversion
-
+Source: "{#BuildDir}\man\*";                                    DestDir: "{app}\doc\man"; Flags: ignoreversion
+Source: "{#BuildDir}\html\aspell\*";                            DestDir: "{app}\doc\aspell"; Flags: ignoreversion
+Source: "{#BuildDir}\html\aspell-dev\*";                        DestDir: "{app}\doc\aspell-dev"; Flags: ignoreversion
 
 [Registry]
 
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: ""; ValueData: {app}; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: ""; ValueData: {app}; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
 
 ; Aspell version
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@ASPELL_VERSION_MAJOR@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@ASPELL_VERSION_MINOR@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@ASPELL_VERSION_PATCH@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@ASPELL_VERSION_BUILD@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@ASPELL_VERSION_MAJOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@ASPELL_VERSION_MINOR@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@ASPELL_VERSION_PATCH@"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@ASPELL_VERSION_BUILD@"; Flags: uninsdeletekey
 
 ; Library versions
-Root: HKLM; Subkey: "Software\Aspell";  ValueType: dword;  ValueName: "AspellVersion"; ValueData: "16";  Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "AspellVersion"; ValueData: "16";  Flags: uninsdeletekey
 
 [INI]
 
@@ -77,7 +76,6 @@ Filename: "{app}\doc\Aspell.url";                               Section: "Intern
 Filename: "{app}\doc\Aspell-win32.url";                         Section: "InternetShortcut"; Key: "URL"; String: "https://github.com/adamyg/aspell-win32"
 Filename: "{app}\doc\Aspell-support.url";                       Section: "InternetShortcut"; Key: "URL"; String: "http://mail.gnu.org/mailman/listinfo/aspell-user"
 Filename: "{app}\doc\Aspell-dictionaries.url";                  Section: "InternetShortcut"; Key: "URL"; String: "http://aspell.net/win32/dicts"
-
 
 [Icons]
 
@@ -88,7 +86,6 @@ Name: "{group}\Aspell Manual";                                  Filename: "{app}
 Name: "{group}\Download dictionaries";                          Filename: "{app}\doc\Aspell-dictionaries.url"
 Name: "{group}\Uninstall Aspell-@ASPELL_VERSION@";              Filename: "{uninstallexe}"
 Name: "{commondesktop}\Aspell (drop files here)";               Filename: "{app}\bin\Aspell.exe"; Parameters: "check"; Tasks: desktopicon
-
 
 [UninstallDelete]
 
@@ -105,7 +102,6 @@ Type: dirifempty; Name: "{app}\doc";
 Type: dirifempty; Name: "{app}\shared";
 Type: dirifempty; Name: "{app}\etc";
 Type: dirifempty; Name: "{app}";
-
 
 [Code]
 
@@ -130,7 +126,7 @@ begin
         Result:=true;
         if AspellInstalled(version,uninst)
         then
-        begin
+                begin
                 msgres:= MsgBox('Aspell-'+version+' is currently installed.'+#13#13 +'Do you want to uninstall it first?.', mbError, MB_YESNOCANCEL);
                 case msgres of
                 IdYes: begin
