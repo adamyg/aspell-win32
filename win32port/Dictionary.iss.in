@@ -35,6 +35,8 @@ Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  Valu
 Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@DICTIONARY_VERSION_PATCH@"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@DICTIONARY_VERSION_BUILD@"; Flags: uninsdeletekey
 
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Dictionaries"; ValueData: "{app}\dict"; Flags: uninsdeletekey
+
 [UninstallDelete]
 
 Type: dirifempty; Name: "{app}\shared";

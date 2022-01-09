@@ -61,6 +61,8 @@ Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: ""; ValueDa
 Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
 
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Data"; ValueData: "{app}\data"; Flags: uninsdeletekey
+
 ; Aspell version
 Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@ASPELL_VERSION_MAJOR@"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "Software\Aspell"; ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@ASPELL_VERSION_MINOR@"; Flags: uninsdeletekey

@@ -8,7 +8,8 @@
 #include "buildinfo.h"
 
 #define DATA_DIR aspell_DATA_DIR()
-#define DICT_DIR "<data-dir>" /*<prefix:/dictionaries|prefix:/dict|data-dir>*/
+#define DICT_DIR aspell_DICT_DIR()
+    //#define DICT_DIR "<data-dir>" /*<prefix:/dict|data-dir>*/
 #define CONF_DIR aspell_CONF_DIR()
 #define PREFIX aspell_PREFIX_DIR()
 
