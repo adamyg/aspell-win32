@@ -186,8 +186,8 @@ if "%1"=="--vs143" (
         )
 
         if NOT "%DICTIONARY%"=="" (
-                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin %DICTIONARY%
-                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin %DICTIONARY%
+                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
         )
         goto Exit
 
