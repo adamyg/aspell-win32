@@ -1,0 +1,53 @@
+name: build_dictionaries
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Description'
+        default:  'Release'
+        required: true
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Install Windows 8.1 SDK
+      shell: powershell
+      run: |
+        Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+        Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+
+    - name: generate enviroment
+      shell: cmd
+      run: |
+        @set PERL=c:/Strawberry/perl/bin/perl
+        git submodule init
+        git submodule update
+        call ./mk-cmake --vs140 --release --prime
+
+    - name: compile
+      shell: cmd
+      run: |
+        call ./mk-cmake --vs140 --release --build
+
+    - name: package
+      shell: cmd
+      run: |
+        call ./mk-cmake --vs140 --lang ALL
+        @exit 0
+
+    - name: release
+      uses: softprops/action-gh-release@v1
+      with:
+       files: ./installer.vs140/*
+       draft: true
