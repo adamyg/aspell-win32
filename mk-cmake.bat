@@ -184,10 +184,10 @@ if "%1"=="--vs143" (
                 if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
                 if "%BUILD%"=="yes" %CMAKE% --build build_x64_%CONFIG%.%MSVC% --config %CONFIG%
         )
-        
+
         if NOT "%DICTIONARY%"=="" (
-                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
-                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
+                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin %DICTIONARY%
+                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin %DICTIONARY%
         )
         goto Exit
 

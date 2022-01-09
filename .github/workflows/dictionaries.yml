@@ -34,13 +34,9 @@ jobs:
         git submodule init
         git submodule update
         call ./mk-cmake --vs140 --release --prime
+        choco install innosetup --version=5.6.1 --force
 
-    - name: compile
-      shell: cmd
-      run: |
-        call ./mk-cmake --vs140 --release --build
-
-    - name: package
+    - name: compile and package
       shell: cmd
       run: |
         call ./mk-cmake --vs140 --lang ALL
