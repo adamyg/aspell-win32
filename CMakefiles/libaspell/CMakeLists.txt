@@ -288,7 +288,7 @@ set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION} PROPERTY
 
 add_compile_definitions(
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"                  ## libaspell requirement.
+     ## "$<$<CONFIG:Release>:NDEBUG;>"  ## libaspell requirement.
         "_WINDOWS;"
         "_MBCS;"
         )

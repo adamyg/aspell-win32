@@ -46,7 +46,8 @@ jobs:
     - name: Windows, package
       shell: cmd
       run: |
-        call ./mk-cmake --vs140 --package-only
+        call ./mk-cmake --vs140 --package
+        call ./mk-cmake --vs140 --lang en
         @exit 0
 
     - name: Windows, publish

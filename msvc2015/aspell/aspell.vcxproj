@@ -125,7 +125,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -148,7 +148,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -173,7 +173,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -198,7 +198,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../submodule/PDCurses;../../submodule/aspell/interfaces/cc;../../submodule/aspell/common;../../submodule/aspell/modules/speller/default;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

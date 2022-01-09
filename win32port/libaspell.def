@@ -1,6 +1,6 @@
 ;$Id: $
 ;
-; libaspell library definition (4.60.8)
+; libaspell library definition (0.60.8)
 ;
 ;DESCRIPTION "libaspell"
 EXPORTS

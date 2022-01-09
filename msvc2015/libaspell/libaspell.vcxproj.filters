@@ -512,13 +512,16 @@
     <ClInclude Include="..\..\submodule\aspell\modules\speller\default\wordinfo.hpp">
       <Filter>Header Files\speller</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\win32port\dirs.h">
-      <Filter>Source Files\win32port</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\win32port\dirent.h">
       <Filter>Header Files\win32port</Filter>
     </ClInclude>
     <ClInclude Include="..\..\win32port\settings.h">
+      <Filter>Header Files\win32port</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BuildInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\dirs.h">
       <Filter>Header Files\win32port</Filter>
     </ClInclude>
   </ItemGroup>

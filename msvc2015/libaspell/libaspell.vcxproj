@@ -195,6 +195,7 @@
     <ClInclude Include="..\..\win32port\dirs.h" />
     <ClInclude Include="..\..\win32port\settings.h" />
     <ClInclude Include="..\..\win32port\dirent.h" />
+    <ClInclude Include="..\BuildInfo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D2998A79-52C1-4BA1-B166-7AC6C0AA5242}</ProjectGuid>
@@ -290,7 +291,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -311,7 +312,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -334,7 +335,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -356,7 +357,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

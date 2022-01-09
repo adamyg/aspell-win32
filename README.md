@@ -1,8 +1,9 @@
 # aspell-win32
 
-The following packages need to be installed to build this packaget:
+The following packages need to be installed to build this package:
 
   * cmake
+  * cygwin or msys
   * perl
   * Visual studio 2008+
   * Innosetup
@@ -20,20 +21,38 @@ Build and package
 
 ```
 
+Package
+
+```
+
+  mk-cmake --package
+
+```
+
+Dictionary Package(s)
+
+```
+
+  mk-cmake --lang ALL
+  mk-cmake --lang <LANG>
+
+```
+
 Current mk-cmake usage:
 
 ```
 
   mk-cmake [--release or --debug] [targets] [--cmake {path}] [--vsxxx]
 
-  Options:
-    --package             package
-    -i, --interactive     enable interactive package creation (during builds)
-
-  Targets:
-    --prime               prime only
-    --build               build only
-    --package-only        package only
+  Prime Options:                                                 
+    -i, --interactive     enable interactive package creation.   
+                                                               
+  Targets:                                                   
+    --prime               prime only.                        
+    --build               build only.                        
+    --also-package        also package, with prime or build. 
+    --package             package only.                      
+    --lang LANG           buid dictionary for language.
 
   Toolchains:
     --vs90   Visual Studio 9 2008

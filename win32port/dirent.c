@@ -272,4 +272,3 @@ long int telldir(DIR* dirp)
 	}
 	return ((struct __dir*)dirp)->count;
 }
-

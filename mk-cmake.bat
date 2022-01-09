@@ -7,6 +7,7 @@ set MSVC=vs140
 set PRIME=yes
 set BUILD=yes
 set PACKAGE=no
+set DICTIONARY=
 set INTERACTIVE=OFF
 set X64=yes
 
@@ -24,23 +25,41 @@ if "%1"=="--debug" (
         )
 
 if "%1"=="--prime" (
+        set PRIME=yes
         set BUILD=no
+        set PACKAGE=no
         shift
         goto Arguments
         )
 if "%1"=="--build" (
         set PRIME=no
+        set BUILD=yes
+        set PACKAGE=no
         shift
         goto Arguments
         )
 if "%1"=="--package" (
+        set PRIME=no
+        set BUILD=no
         set PACKAGE=yes
         shift
         goto Arguments
         )
-if "%1"=="--package-only" (
+if "%1"=="--lang" (
         set PRIME=no
         set BUILD=no
+        set PACKAGE=no
+        set DICTIONARY="dictionary_%2"
+        if "%DICTIONARY%"=="" goto Arguments
+        if "%DICTIONARY%"=="dictionary_ALL" (
+                set DICTIONARY="dictionaries"
+        )
+        shift
+        shift
+        goto Arguments
+        )
+
+if "%1"=="--also-package" (
         set PACKAGE=yes
         shift
         goto Arguments
@@ -122,15 +141,15 @@ if "%1"=="--vs143" (
         echo #
         echo #  mk-cmake [--release or --debug] [targets] [--cmake {path}] [--vsxxx]
         echo #
-        echo #  Options:
-        echo #    --package             package
-        echo #    -i, --interactive     enable interactive package creation (during builds)
+        echo #  Prime Options:
+        echo #    -i, --interactive     enable interactive package creation.
         echo #
         echo #  Targets:
-        echo #    --prime               prime only
-        echo #    --build               build only
-        echo #    --package             also package
-        echo #    --package-only        package only
+        echo #    --prime               prime only.
+        echo #    --build               build only.
+        echo #    --also-package        also package, with prime or build.
+        echo #    --package             package only.
+        echo #    --lang LANG           buid dictionary for language.
         echo #
         echo #  Toolchains:
         echo #    --vs90   Visual Studio 9 2008
@@ -163,6 +182,11 @@ if "%1"=="--vs143" (
         if "%X64%"=="yes" (
                 if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
                 if "%BUILD%"=="yes" %CMAKE% --build build_x64_%CONFIG%.%MSVC% --config %CONFIG%
+        )
+        
+        if NOT "%DICTIONARY%"=="" (
+                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
+                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
         )
         goto Exit
 

@@ -97,8 +97,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 
-set(ASPELL_APPNAME "aspell-0.60")
-set(ASPELL_VERSION "0.60.8-1")
+set(ASPELL_BUILD "1")
+set(ASPELL_APPNAME "Aspell-0.60")
+set(ASPELL_VERSION "0.60.8-${ASPELL_BUILD}")
 set(ASPELL_SHARED_VERSION "-0.60")
 setup_package_version_variables(ASPELL)
 
@@ -107,6 +108,8 @@ add_subdirectory(libaspell/man-pages)
 add_subdirectory(libaspell/html-doc)
 add_subdirectory(libaspell/example)
 add_subdirectory(libaspell/list-dicts)
+add_subdirectory(libaspell/make-dicts)
+add_subdirectory(libpspell)
 
 add_subdirectory(PDCurses)
 add_subdirectory(PDCurses/firework)
@@ -114,7 +117,8 @@ add_subdirectory(PDCurses/ozdemo)
 add_subdirectory(PDCurses/tuidemo)
 add_subdirectory(PDCurses/worm)
 
-add_subdirectory(word-list-compress)
 add_subdirectory(aspell)
+add_subdirectory(word-list-compress)
+add_subdirectory(prezip)
 
 #end

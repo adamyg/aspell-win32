@@ -1,29 +1,20 @@
 #
-# aspell: 0.60.x
+# aspell: 0.60.8
 #
 
-set(PROJECT_NAME aspell)
+set(PROJECT_NAME prezip-bin)
 set(ROOT_NAMESPACE libaspell)
 
 ################################################################################
 # Source groups
 ################################################################################
 
-set(Header_Files
-        "../../submodule/aspell/prog/check_funs.hpp"
-        "../../submodule/aspell/prog/checker_string.hpp"
-)
-source_group("Header Files" FILES ${Header_Files})
-
 set(Source_Files
-        "../../submodule/aspell/prog/aspell.cpp"
-        "../../submodule/aspell/prog/check_funs.cpp"
-        "../../submodule/aspell/prog/checker_string.cpp"
+        "../../submodule/aspell/prog/prezip.c"
 )
 source_group("Source Files" FILES ${Source_Files})
 
 set(ALL_FILES
-        ${Header_Files}
         ${Source_Files}
 )
 
@@ -40,15 +31,14 @@ use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 # Include directories
 ################################################################################
 
-include_directories(${CMAKE_BINARY_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/PDCurses"
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/interfaces/cc"
-        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/common"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/interfaces/cc;"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/common;"
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/aspell/modules/speller/default"
         )
 
@@ -57,9 +47,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 # Dependencies
 ################################################################################
 
-target_link_libraries(${PROJECT_NAME} PDCurses libaspell)
+target_link_libraries(${PROJECT_NAME} libaspell)
 add_dependencies(${PROJECT_NAME}
-        PDCurses
         libaspell
         )
 
@@ -116,32 +105,4 @@ target_link_options(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Debug>:/DEBUG:FULL>
         )
 
-
-###############################################################################
-# Package
-###############################################################################
-
-option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
-if (PACKAGE_INTERACTIVE)
-        set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
-else()
-        set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
-endif()
-
-set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
-set(ISS_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/../submodule/aspell/")
-set(ISS_BUILD_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
-
-configure_file(
-        "../../win32port/Aspell.iss.in"
-        ${CMAKE_BINARY_DIR}/Aspell.iss @ONLY
-        )
-
-add_custom_target(package
-        COMMENT "Packaging: aspell-${ASPELL_VERSION} [${ISS_COMPILER} Aspell.iss]"
-        DEPENDS ${CMAKE_BINARY_DIR}/Aspell.iss
-        COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Aspell.iss
-        )
-
 #end
-
