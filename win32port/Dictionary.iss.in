@@ -89,7 +89,7 @@ begin
                 end;
         end; 
 
-        if AspellPath('')<>''
+        if AspellPath('')=''
         then begin
                 if MsgBox('Aspell not found. Do you want to abort?', mbConfirmation, MB_YESNO)<>IdYes
                 then Result:=false;
