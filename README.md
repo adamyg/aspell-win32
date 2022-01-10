@@ -1,6 +1,12 @@
 # aspell-win32
 
-The following packages need to be installed to build this package:
+GNU Aspell [http://aspell.net] is a Free and Open Source spell checker designed to
+eventually replace Ispell. It can either be used as a library or as an independent
+spell checker. Its main feature is that it does a superior job of suggesting possible
+replacements for a misspelled word than just about any other spell checker out there
+for the English language.
+
+The following packages need to be installed to build this package, based on aspell 0.60.8:
 
   * cmake
   * cygwin or msys
@@ -44,14 +50,14 @@ Current mk-cmake usage:
 
   mk-cmake [--release or --debug] [targets] [--cmake {path}] [--vsxxx]
 
-  Prime Options:                                                 
-    -i, --interactive     enable interactive package creation.   
-                                                               
-  Targets:                                                   
-    --prime               prime only.                        
-    --build               build only.                        
-    --also-package        also package, with prime or build. 
-    --package             package only.                      
+  Prime Options:
+    -i, --interactive     enable interactive package creation.
+
+  Targets:
+    --prime               prime only.
+    --build               build only.
+    --also-package        also package, with prime or build.
+    --package             package only.
     --lang LANG           buid dictionary for language.
 
   Toolchains:
@@ -66,4 +72,5 @@ Current mk-cmake usage:
 
 ```
 
-You will then need to install a dictionary package for the new Aspell. You can find them at http://aspell.net.
+You will then need to install a dictionary package for the new Aspell.
+
