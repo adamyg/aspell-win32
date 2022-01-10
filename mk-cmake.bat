@@ -45,12 +45,20 @@ if "%1"=="--package" (
         shift
         goto Arguments
         )
+if "%1"=="--lang_list" (
+        set DICTIONARY=dictionary_list
+        set PRIME=no
+        set BUILD=no
+        set PACKAGE=no
+        shift
+        goto Arguments
+        )
 if "%1"=="--lang" (
         if "%2"=="" goto Help
         if "%2"=="ALL" (
-                set DICTIONARY="dictionaries"
+                set DICTIONARY=dictionaries
         ) else (
-                set DICTIONARY="dictionary_%2"
+                set DICTIONARY=dictionary_%2
         )
         set PRIME=no
         set BUILD=no
@@ -150,7 +158,8 @@ if "%1"=="--vs143" (
         echo #    --build               build only.
         echo #    --also-package        also package, with prime or build.
         echo #    --package             package only.
-        echo #    --lang LANG           buid dictionary for language.
+        echo #    --lang LANG           build dictionary for language.
+        echo #    --lang_list           list dictionaries.
         echo #
         echo #  Toolchains:
         echo #    --vs90   Visual Studio 9 2008
@@ -186,8 +195,12 @@ if "%1"=="--vs143" (
         )
 
         if NOT "%DICTIONARY%"=="" (
-                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
-                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                if "%DICTIONARY%"=="dictionary_list" (
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
+                ) else (
+                        echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                )
         )
         goto Exit
 

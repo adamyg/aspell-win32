@@ -118,10 +118,8 @@ use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
 if (PACKAGE_INTERACTIVE)
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
-        set(ISS_COMPILER_OPTIONS "")
 else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
-        set(ISS_COMPILER_OPTIONS "/Qp")
 endif()
 
 # --- destination
@@ -148,6 +146,14 @@ endif()
 message("tar:  ${TAR_PATH}/tar")
 
 # --- targets
+
+add_custom_target(
+        dictionary_list
+        COMMAND more Dictionaries.txt
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        )
+
+file(WRITE ${CMAKE_BINARY_DIR}/Dictionaries.txt "Dictionary List:\n\n")
 foreach(dict_spec ${DICTIONARIES})
 
         # Component
@@ -157,6 +163,7 @@ foreach(dict_spec ${DICTIONARIES})
         list(GET dict_parts 1 DICTIONARY_NAME) # English
         list(GET dict_parts 2 DICTIONARY_FILE) # aspell6-en-2020.12.07-0.tar.bz2
         list(GET dict_parts 3 DICTIONARY_VERSION) # 2020.12.07
+        file(APPEND ${CMAKE_BINARY_DIR}/Dictionaries.txt "\t${DICTIONARY_LANG}\t${DICTIONARY_NAME}\n")
 
         setup_package_version_variables(DICTIONARY)
         if (${DICTIONARY_VERSION_BUILD} EQUAL 0)
@@ -168,12 +175,6 @@ foreach(dict_spec ${DICTIONARIES})
         get_filename_component(dict_source_name ${DICTIONARY_FILE} NAME_WLE) #bz2
         get_filename_component(dict_source_name ${dict_source_name} NAME_WLE) #tar
         set(DICTIONARY_SOURCE_DIRECTORY "${DICTIONARY_IMPORT_DIRECTORY}/${dict_source_name}")
-
-     ## configure_file(
-     ##         "../../../win32port/Dictionary.sh.in"
-     ##         ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.sh @ONLY
-     ##         NEWLINE_STYLE UNIX
-     ##         )
 
         configure_file(
                 "../../../win32port/Dictionary.iss.in"
@@ -205,13 +206,14 @@ foreach(dict_spec ${DICTIONARIES})
         add_custom_target(
                 dictionary_${DICTIONARY_LANG}
                 DEPENDS dictionary_${DICTIONARY_LANG}_build
-                COMMENT "building: aspell_${DICTIONARY_LANG}_setup.iss]"
-                COMMAND ${ISS_COMPILER} ${ISS_COMPILER_OPTIONS} ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.iss
+                COMMENT "building: dictionary_${DICTIONARY_LANG}"
+                COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.iss
                 )
 
         add_dependencies(dictionaries dictionary_${DICTIONARY_LANG})
 
 endforeach()
+file(APPEND ${CMAKE_BINARY_DIR}/Dictionaries.txt "\n\n")
 
 #end
 
