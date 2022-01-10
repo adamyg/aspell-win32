@@ -118,8 +118,10 @@ use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
 if (PACKAGE_INTERACTIVE)
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
+        set(ISS_COMPILER_OPTIONS "")
 else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
+        set(ISS_COMPILER_OPTIONS "/Qp")
 endif()
 
 # --- destination
@@ -204,7 +206,7 @@ foreach(dict_spec ${DICTIONARIES})
                 dictionary_${DICTIONARY_LANG}
                 DEPENDS dictionary_${DICTIONARY_LANG}_build
                 COMMENT "building: aspell_${DICTIONARY_LANG}_setup.iss]"
-                COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.iss
+                COMMAND ${ISS_COMPILER} ${ISS_COMPILER_OPTIONS} ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.iss
                 )
 
         add_dependencies(dictionaries dictionary_${DICTIONARY_LANG})

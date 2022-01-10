@@ -124,8 +124,10 @@ target_link_options(${PROJECT_NAME} PRIVATE
 option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
 if (PACKAGE_INTERACTIVE)
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/Compil32")
+        set(ISS_COMPILER_OPTIONS "")
 else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
+        set(ISS_COMPILER_OPTIONS "/Qp")
 endif()
 
 set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
@@ -140,7 +142,7 @@ configure_file(
 add_custom_target(package
         COMMENT "Packaging: aspell-${ASPELL_VERSION} [${ISS_COMPILER} Aspell.iss]"
         DEPENDS ${CMAKE_BINARY_DIR}/Aspell.iss
-        COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Aspell.iss
+        COMMAND ${ISS_COMPILER} ${ISS_COMPILER_OPTIONS} ${CMAKE_BINARY_DIR}/Aspell.iss
         )
 
 #end
