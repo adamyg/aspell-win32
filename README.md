@@ -60,6 +60,8 @@ Current mk-cmake usage:
     --package             package only.
     --lang LANG           buid dictionary for language.
 
+    --lang_list           list dictionaries.
+
   Toolchains:
     --vs90   Visual Studio 9 2008
     --vs100  Visual Studio 10 2010
