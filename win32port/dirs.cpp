@@ -435,7 +435,7 @@ set_environment(void)
                 LCID lcid = GetThreadLocale();
 
                 if (GetLocaleInfoA(lcid, LOCALE_SISO639LANGNAME, iso639, sizeof(iso639)) &&
-		        GetLocaleInfoA(lcid, LOCALE_SISO3166CTRYNAME, iso3166, sizeof(iso3166))) {
+                        GetLocaleInfoA(lcid, LOCALE_SISO3166CTRYNAME, iso3166, sizeof(iso3166))) {
 
                     snprintf(lang, sizeof(lang), "%s_%s", iso639, iso3166); // "9_9"
                     lang[sizeof(lang) - 1] = '\0';
