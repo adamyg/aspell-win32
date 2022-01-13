@@ -1,4 +1,26 @@
 @echo off
+rem #
+rem # Adam Young, 2021 - 2022.
+rem #
+rem # This file is part of the aspell-win32.
+rem #
+rem # Permission is hereby granted, free of charge, to any person obtaining a copy
+rem # of this software and associated documentation files (the "Software"), to deal
+rem # in the Software without restriction, including without limitation the rights
+rem # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+rem # copies of the Software, and to permit persons to whom the Software is
+rem # furnished to do so, subject to the following conditions:
+rem # The above copyright notice and this permission notice shall be included in all
+rem # copies or substantial portions of the Software.
+rem #
+rem # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+rem # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+rem # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+rem # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+rem # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+rem # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+rem # SOFTWARE.
+rem #
 
 set CMAKE="C:/Program Files/cmake/bin/cmake"
 set CONFIG=release
@@ -45,12 +67,20 @@ if "%1"=="--package" (
         shift
         goto Arguments
         )
+if "%1"=="--lang_list" (
+        set DICTIONARY=dictionary_list
+        set PRIME=no
+        set BUILD=no
+        set PACKAGE=no
+        shift
+        goto Arguments
+        )
 if "%1"=="--lang" (
         if "%2"=="" goto Help
         if "%2"=="ALL" (
-                set DICTIONARY="dictionaries"
+                set DICTIONARY=dictionaries
         ) else (
-                set DICTIONARY="dictionary_%2"
+                set DICTIONARY=dictionary_%2
         )
         set PRIME=no
         set BUILD=no
@@ -136,6 +166,10 @@ if "%1"=="--vs143" (
         goto Arguments
         )
 
+if "%1"=="--help" goto Help
+if "%1"=="-h" goto Help
+if "%1"=="-?" goto Help
+
         echo mk-cmake: invalid argument, %1
 
 :Help
@@ -150,7 +184,8 @@ if "%1"=="--vs143" (
         echo #    --build               build only.
         echo #    --also-package        also package, with prime or build.
         echo #    --package             package only.
-        echo #    --lang LANG           buid dictionary for language.
+        echo #    --lang LANG           build dictionary for language.
+        echo #    --lang_list           list dictionaries.
         echo #
         echo #  Toolchains:
         echo #    --vs90   Visual Studio 9 2008
@@ -186,11 +221,16 @@ if "%1"=="--vs143" (
         )
 
         if NOT "%DICTIONARY%"=="" (
-                echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
-                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                if "%DICTIONARY%"=="dictionary_list" (
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target %DICTIONARY%
+                ) else (
+                        echo %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
+                )
         )
+
+        taskkill /IM vctip.exe /f >nul 2>&1
         goto Exit
 
 :Exit
-taskkill /IM vctip.exe /f >nul 2>&1
 

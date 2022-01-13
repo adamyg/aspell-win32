@@ -1,6 +1,27 @@
 #
 # libaspell: dictionaries
 #
+# Adam Young, 2021 - 2022.
+#
+# This file is part of the aspell-win32.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
 
 set(PROJECT_NAME dictionaries)
 set(ROOT_NAMESPACE libaspell)
@@ -146,6 +167,14 @@ endif()
 message("tar:  ${TAR_PATH}/tar")
 
 # --- targets
+
+add_custom_target(
+        dictionary_list
+        COMMAND more Dictionaries.txt
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        )
+
+file(WRITE ${CMAKE_BINARY_DIR}/Dictionaries.txt "Dictionary List:\n\n")
 foreach(dict_spec ${DICTIONARIES})
 
         # Component
@@ -155,6 +184,7 @@ foreach(dict_spec ${DICTIONARIES})
         list(GET dict_parts 1 DICTIONARY_NAME) # English
         list(GET dict_parts 2 DICTIONARY_FILE) # aspell6-en-2020.12.07-0.tar.bz2
         list(GET dict_parts 3 DICTIONARY_VERSION) # 2020.12.07
+        file(APPEND ${CMAKE_BINARY_DIR}/Dictionaries.txt "\t${DICTIONARY_LANG}\t${DICTIONARY_NAME}\n")
 
         setup_package_version_variables(DICTIONARY)
         if (${DICTIONARY_VERSION_BUILD} EQUAL 0)
@@ -166,12 +196,6 @@ foreach(dict_spec ${DICTIONARIES})
         get_filename_component(dict_source_name ${DICTIONARY_FILE} NAME_WLE) #bz2
         get_filename_component(dict_source_name ${dict_source_name} NAME_WLE) #tar
         set(DICTIONARY_SOURCE_DIRECTORY "${DICTIONARY_IMPORT_DIRECTORY}/${dict_source_name}")
-
-     ## configure_file(
-     ##         "../../../win32port/Dictionary.sh.in"
-     ##         ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.sh @ONLY
-     ##         NEWLINE_STYLE UNIX
-     ##         )
 
         configure_file(
                 "../../../win32port/Dictionary.iss.in"
@@ -203,13 +227,14 @@ foreach(dict_spec ${DICTIONARIES})
         add_custom_target(
                 dictionary_${DICTIONARY_LANG}
                 DEPENDS dictionary_${DICTIONARY_LANG}_build
-                COMMENT "building: aspell_${DICTIONARY_LANG}_setup.iss]"
+                COMMENT "building: dictionary_${DICTIONARY_LANG}"
                 COMMAND ${ISS_COMPILER} ${CMAKE_BINARY_DIR}/Dictionary_${DICTIONARY_LANG}.iss
                 )
 
         add_dependencies(dictionaries dictionary_${DICTIONARY_LANG})
 
 endforeach()
+file(APPEND ${CMAKE_BINARY_DIR}/Dictionaries.txt "\n\n")
 
 #end
 

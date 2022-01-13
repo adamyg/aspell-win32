@@ -164,7 +164,7 @@ static wchar_t* __get_buffer()
 DIR* opendir(const char* name)
 {
 	DIR* dirp = NULL;
-        wchar_t* wname = __get_buffer();
+	wchar_t* wname = __get_buffer();
 	int size = 0;
 	if (!wname)
 	{
