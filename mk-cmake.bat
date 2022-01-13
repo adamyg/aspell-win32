@@ -166,6 +166,10 @@ if "%1"=="--vs143" (
         goto Arguments
         )
 
+if "%1"=="--help" goto Help
+if "%1"=="-h" goto Help
+if "%1"=="-?" goto Help
+
         echo mk-cmake: invalid argument, %1
 
 :Help
@@ -224,8 +228,9 @@ if "%1"=="--vs143" (
                         %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target aspell prezip-bin word-list-compress %DICTIONARY%
                 )
         )
+
+        taskkill /IM vctip.exe /f >nul 2>&1
         goto Exit
 
 :Exit
-taskkill /IM vctip.exe /f >nul 2>&1
 
