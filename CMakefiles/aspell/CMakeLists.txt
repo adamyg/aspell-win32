@@ -151,9 +151,10 @@ else()
         set(ISS_COMPILER_OPTIONS "/Qp")
 endif()
 
-set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
+set(ISS_SETUP_DIRECTORY "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
 set(ISS_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/../submodule/aspell/")
 set(ISS_BUILD_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
+set(ISS_ARCHITECTURE ${CMAKE_VS_PLATFORM_NAME})
 
 configure_file(
         "../../win32port/Aspell.iss.in"

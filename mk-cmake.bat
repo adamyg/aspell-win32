@@ -31,6 +31,7 @@ set BUILD=yes
 set PACKAGE=no
 set DICTIONARY=
 set INTERACTIVE=OFF
+set X32=yes
 set X64=yes
 
 :Arguments
@@ -166,6 +167,19 @@ if "%1"=="--vs143" (
         goto Arguments
         )
 
+if "%1"=="--Win32" (
+        set X32=yes
+        set X64=no
+        shift
+        goto Arguments
+        )
+if "%1"=="--x64" (
+        set X32=no
+        set X64=yes
+        shift
+        goto Arguments
+        )
+
 if "%1"=="--help" goto Help
 if "%1"=="-h" goto Help
 if "%1"=="-?" goto Help
@@ -186,6 +200,10 @@ if "%1"=="-?" goto Help
         echo #    --package             package only.
         echo #    --lang LANG           build dictionary for language.
         echo #    --lang_list           list dictionaries.
+        echo #
+        echo #  Architecture:
+        echo #    --Win32               32-bit only.
+        echo #    --x64                 64-bit only.
         echo #
         echo #  Toolchains:
         echo #    --vs90   Visual Studio 9 2008
@@ -209,15 +227,28 @@ if "%1"=="-?" goto Help
                 )
         )
 
-        if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
-        if "%BUILD%"=="yes" %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG%
-        if "%PACKAGE%"=="yes" (
-                %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target package
+        if "%X32%"=="yes" (
+                if "%PRIME%"=="yes" (
+                        %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
+                )
+                if "%BUILD%"=="yes" (
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG%
+                )
+                if "%PACKAGE%"=="yes" (
+                        %CMAKE% --build build_win32_%CONFIG%.%MSVC% --config %CONFIG% --target package
+                )
         )
 
         if "%X64%"=="yes" (
-                if "%PRIME%"=="yes" %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
-                if "%BUILD%"=="yes" %CMAKE% --build build_x64_%CONFIG%.%MSVC% --config %CONFIG%
+                if "%PRIME%"=="yes" (
+                        %CMAKE% -G %TOOLCHAIN% -A x64 -S CMakefiles -B "build_x64_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
+                )
+                if "%BUILD%"=="yes" (
+                        %CMAKE% --build build_x64_%CONFIG%.%MSVC% --config %CONFIG%
+                )
+                if "%PACKAGE%"=="yes" (
+                        %CMAKE% --build build_x64_%CONFIG%.%MSVC% --config %CONFIG% --target package
+                )
         )
 
         if NOT "%DICTIONARY%"=="" (
