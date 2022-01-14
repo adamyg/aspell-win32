@@ -1,5 +1,5 @@
 #
-# aspell: 0.60.8
+# aspell: 0.60.x
 #
 # Adam Young, 2021 - 2022.
 #
@@ -84,12 +84,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
         ${DEFAULT_CXX_EXCEPTION_HANDLING}
         )
 
-target_compile_options(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
-        /FI../../win32port/msvcpatch.h;
-        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
-        ${DEFAULT_CXX_EXCEPTION_HANDLING}
-        )
-
 set_property(TARGET ${PROJECT_NAME} PROPERTY
         "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
         "$<$<CONFIG:Release>:MultiThreadedDLL>"
@@ -97,7 +91,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"
+    ##  "$<$<CONFIG:Release>:NDEBUG;>"
         "_WINDOWS;"
         "_MBCS;"
         )

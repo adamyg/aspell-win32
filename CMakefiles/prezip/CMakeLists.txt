@@ -1,5 +1,5 @@
 #
-# aspell: 0.60.8
+# aspell: 0.60.x
 #
 # Adam Young, 2021 - 2022.
 #
@@ -79,12 +79,6 @@ add_dependencies(${PROJECT_NAME}
 ################################################################################
 
 target_compile_options(${PROJECT_NAME} PRIVATE
-        /FI../../win32port/msvcpatch.h;
-        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
-        ${DEFAULT_CXX_EXCEPTION_HANDLING}
-        )
-
-target_compile_options(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
         /FI../../win32port/msvcpatch.h;
         ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
         ${DEFAULT_CXX_EXCEPTION_HANDLING}
