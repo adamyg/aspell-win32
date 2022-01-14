@@ -107,7 +107,8 @@ aspell_HOME_DIR(void)
  *          <path>\etc\
  *
  *      <INSTALLPATH>
- *          X:\Program Files\<aspell>\etc
+ *          X:\Program Files\<aspell>\etc           [x64]
+ *          X:\Program Files (x86)\<aspell>\etc     [x86]
  *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
@@ -191,7 +192,7 @@ aspell_CONF_DIR(void)
  *  Retrieve global/share configuration path, equivalent to '/usr/share/aspell'.
  *
  *      <DLL|EXEPATH>
-  *          <path>\dict\
+ *          <path>\dict\
  *
  *      <DATA_DIR>
  */
@@ -226,6 +227,20 @@ aspell_DICT_DIR(void)
                 }
                 RegCloseKey(hKey);
             }
+
+#if defined(_WIN64)
+            if (ERROR_SUCCESS == RegOpenKeyExA(HKEY_LOCAL_MACHINE, "SOFTWARE\\WOW6432Node\\Aspell", 0, KEY_READ, &hKey)) {
+                DWORD dwSize = sizeof(x_buffer);
+
+                x_buffer[0] = 0;
+                if (ERROR_SUCCESS == RegQueryValueExA(hKey, "Dictionaries", NULL, NULL, (LPBYTE)x_buffer, &dwSize) && x_buffer[0]) {
+                    if (0 == _access(x_buffer, 0)) {
+                        done = TRUE;
+                    }
+                }
+                RegCloseKey(hKey);
+            }
+#endif  //_WIN64
         }
 
         // default=<data-dict>
@@ -249,8 +264,8 @@ aspell_DICT_DIR(void)
  *          <path>\share\
  *
  *      <INSTALLPATH>
- *          X:\Program Files (x86)\<aspell>\share\
- *          X:\Program Files\<aspell>\share\
+ *          X:\Program Files\<aspell>\share         [x64]
+ *          X:\Program Files (x86)\<aspell>\share   [x86]
  *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
@@ -357,7 +372,9 @@ aspell_DATA_DIR(void)
  *          <path>
  *
  *      <INSTALLPATH>
- *          X:\Program Files\<aspell>
+ *          X:\Program Files\<aspell>               [x64]
+ *          X:\Program Files (x86)\<aspell>         [x86]
+ *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
  */

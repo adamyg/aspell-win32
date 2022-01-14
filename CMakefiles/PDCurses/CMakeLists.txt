@@ -113,8 +113,8 @@ add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
 set(SHARED_VERSION "-3.9")
-add_library(${PROJECT_NAME}${SHARED_VERSION} SHARED ${ALL_FILES})
-use_props(${PROJECT_NAME}${SHARED_VERSION} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
+add_library(${PROJECT_NAME}${SHARED_VERSION}${SHARED_ARCH} SHARED ${ALL_FILES})
+use_props(${PROJECT_NAME}${SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
 
 ################################################################################
@@ -140,12 +140,12 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY
         "$<$<CONFIG:Release>:MultiThreadedDLL>"
         )
 
-set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION} PROPERTY
+set_property(TARGET ${PROJECT_NAME}${SHARED_VERSION}${SHARED_ARCH} PROPERTY
         "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
         "$<$<CONFIG:Release>:MultiThreadedDLL>"
         )
 
-target_compile_definitions(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
+target_compile_definitions(${PROJECT_NAME}${SHARED_VERSION}${SHARED_ARCH} PRIVATE
         "PDC_DLL_BUILD"
         )
 

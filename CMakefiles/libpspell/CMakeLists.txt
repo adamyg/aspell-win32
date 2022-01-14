@@ -44,22 +44,23 @@ set(ALL_FILES
 # Target
 ################################################################################
 
-add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
-use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
-target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION} libaspell${ASPELL_SHARED_VERSION})
+add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
+use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
+
+target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} libaspell${ASPELL_SHARED_VERSION}${SHARED_ARCH})
 
 
 ################################################################################
 # Compile and link options
 ################################################################################
 
-target_compile_options(${PROJECT_NAME}${ASPELL_SHARED_VERSION} PRIVATE
-       ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
-       ${DEFAULT_CXX_EXCEPTION_HANDLING}
-       )
+target_compile_options(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} PRIVATE
+        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
+        ${DEFAULT_CXX_EXCEPTION_HANDLING}
+        )
 
-set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION} PROPERTY
-        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"    ## -MT[d]
+set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} PROPERTY
+        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"  ## -MT[d]
         )
 
         # If Aspell is compiled with WIN32_RELOCATABLE=1, it can be run from any directory:
@@ -74,7 +75,7 @@ set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION} PROPERTY
 
 add_compile_definitions(
         "$<$<CONFIG:Debug>:_DEBUG;>"
-##      "$<$<CONFIG:Release>:NDEBUG;>"  ## libaspell requirement.
+    ##  "$<$<CONFIG:Release>:NDEBUG;>"  ## libaspell requirement.
         "_WINDOWS;"
         "_MBCS;"
         )

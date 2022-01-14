@@ -23,9 +23,6 @@
 ; SOFTWARE.
 ;
 
-#define SourceDir "@ISS_SOURCE_DIRECTORY@"
-#define BuildDir "@ISS_BUILD_DIRECTORY@"
-
 [Setup]
 
 AppName=GNU Aspell
@@ -41,7 +38,18 @@ InfoBeforeFile=@ISS_SOURCE_DIRECTORY@\COPYING
 DirExistsWarning=no
 DisableStartupPrompt=yes
 OutputDir=@ISS_SETUP_DIRECTORY@
+
+#define SourceDir "@ISS_SOURCE_DIRECTORY@"
+#define BuildDocDir "@ISS_BUILD_DIRECTORY@"
+
+#if "@ISS_ARCHITECTURE@"=="x64"
+#define BuildBinDir "@ISS_BUILD_DIRECTORY@/x64"
+OutputBaseFilename=aspell-@ASPELL_VERSION@-x64-setup
+
+#else
+#define BuildBinDir "@ISS_BUILD_DIRECTORY@"
 OutputBaseFilename=aspell-@ASPELL_VERSION@-setup
+#endif
 
 [Tasks]
 
@@ -51,13 +59,13 @@ Name: "sendtoicon";  Description: "Create a &send-to link (right click on a file
 [Files]
 
 ; Binaries
-Source: "{#BuildDir}\Release\bin\aspell.exe";                   DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "{#BuildDir}\Release\bin\aspell-list-dicts.exe";        DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "{#BuildDir}\Release\bin\word-list-compress.exe";       DestDir: "{app}\bin"; Flags: ignoreversion
-Source: "{#BuildDir}\Release\bin\*.dll";                        DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
+Source: "{#BuildBinDir}\Release\bin\aspell.exe";                DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#BuildBinDir}\Release\bin\aspell-list-dicts.exe";     DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#BuildBinDir}\Release\bin\word-list-compress.exe";    DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#BuildBinDir}\Release\bin\*.dll";                     DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
 
 ; Libraries
-Source: "{#BuildDir}\Release\lib\*";                            DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
+Source: "{#BuildBinDir}\Release\lib\*";                         DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
 
 ; Data (*.cmap, *.set and *.kbd)
 Source: "{#SourceDir}\data\*"; Excludes: "Makefile*";           DestDir: "{app}\share"; Flags: ignoreversion sharedfile; AfterInstall: DosToUnix;
@@ -72,9 +80,9 @@ Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\
 Source: "{#SourceDir}\README.md";                               DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\COPYING";                                 DestDir: "{app}"; Flags: ignoreversion
 
-Source: "{#BuildDir}\man\*";                                    DestDir: "{app}\doc\man"; Flags: ignoreversion
-Source: "{#BuildDir}\html\aspell\*";                            DestDir: "{app}\doc\aspell"; Flags: ignoreversion
-Source: "{#BuildDir}\html\aspell-dev\*";                        DestDir: "{app}\doc\aspell-dev"; Flags: ignoreversion
+Source: "{#BuildDocDir}\man\*";                                 DestDir: "{app}\doc\man"; Flags: ignoreversion
+Source: "{#BuildDocDir}\html\aspell\*";                         DestDir: "{app}\doc\aspell"; Flags: ignoreversion
+Source: "{#BuildDocDir}\html\aspell-dev\*";                     DestDir: "{app}\doc\aspell-dev"; Flags: ignoreversion
 
 [Registry]
 

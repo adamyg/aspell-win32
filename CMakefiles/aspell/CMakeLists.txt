@@ -95,12 +95,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
         ${DEFAULT_CXX_EXCEPTION_HANDLING}
         )
 
-target_compile_options(${PROJECT_NAME}${SHARED_VERSION} PRIVATE
-        /FI../../win32port/msvcpatch.h;
-        ${DEFAULT_CXX_DEBUG_INFORMATION_FORMAT};
-        ${DEFAULT_CXX_EXCEPTION_HANDLING}
-        )
-
 set_property(TARGET ${PROJECT_NAME} PROPERTY
         "$<$<CONFIG:Debug>:MultiThreadedDebugDLL>"
         "$<$<CONFIG:Release>:MultiThreadedDLL>"
@@ -151,9 +145,10 @@ else()
         set(ISS_COMPILER_OPTIONS "/Qp")
 endif()
 
-set(ISS_SETUP_DIRECTORY  "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
+set(ISS_SETUP_DIRECTORY "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
 set(ISS_SOURCE_DIRECTORY "${CMAKE_SOURCE_DIR}/../submodule/aspell/")
 set(ISS_BUILD_DIRECTORY ${MSVC_OUTPUT_DIRECTORY})
+set(ISS_ARCHITECTURE ${CMAKE_VS_PLATFORM_NAME})
 
 configure_file(
         "../../win32port/Aspell.iss.in"
