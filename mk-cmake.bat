@@ -31,7 +31,7 @@ set BUILD=yes
 set PACKAGE=no
 set DICTIONARY=
 set INTERACTIVE=OFF
-set X32=yes
+set X86=yes
 set X64=yes
 
 :Arguments
@@ -168,13 +168,13 @@ if "%1"=="--vs143" (
         )
 
 if "%1"=="--Win32" (
-        set X32=yes
+        set X86=yes
         set X64=no
         shift
         goto Arguments
         )
 if "%1"=="--x64" (
-        set X32=no
+        set X86=no
         set X64=yes
         shift
         goto Arguments
@@ -227,7 +227,7 @@ if "%1"=="-?" goto Help
                 )
         )
 
-        if "%X32%"=="yes" (
+        if "%X86%"=="yes" (
                 if "%PRIME%"=="yes" (
                         %CMAKE% -G %TOOLCHAIN% -A Win32 -S CMakefiles -B "build_win32_%CONFIG%.%MSVC%" -DPACKAGE_INTERACTIVE=%INTERACTIVE%
                 )
