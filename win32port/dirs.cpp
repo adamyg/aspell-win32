@@ -226,6 +226,7 @@ aspell_DICT_DIR(void)
                     }
                 }
                 RegCloseKey(hKey);
+                hKey = 0;
             }
 
 #if defined(_WIN64)

@@ -203,7 +203,7 @@ foreach(dict_spec ${DICTIONARIES})
                 )
 
         # Dictionary custom target
-        message("build: dictionary_${DICTIONARY_LANG} [${DICTIONARY_NAME}=${DICTIONARY_FILE}]")
+        message("build: dictionary_${DICTIONARY_LANG} [${DICTIONARY_NAME}, ${DICTIONARY_FILE}, ${DICTIONARY_VERSION}]")
 
         add_custom_target(
                 dictionary_${DICTIONARY_LANG}_import

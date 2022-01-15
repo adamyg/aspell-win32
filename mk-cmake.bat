@@ -168,11 +168,13 @@ if "%1"=="--vs143" (
         )
 
 if "%1"=="--Win32" (
+:Win32
         set X86=yes
         set X64=no
         shift
         goto Arguments
         )
+if "%1"=="--x86" goto Win32
 if "%1"=="--x64" (
         set X86=no
         set X64=yes
@@ -202,7 +204,7 @@ if "%1"=="-?" goto Help
         echo #    --lang_list           list dictionaries.
         echo #
         echo #  Architecture:
-        echo #    --Win32               32-bit only.
+        echo #    --Win32,x86           32-bit only.
         echo #    --x64                 64-bit only.
         echo #
         echo #  Toolchains:
