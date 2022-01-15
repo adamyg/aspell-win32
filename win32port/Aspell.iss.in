@@ -74,7 +74,7 @@ Source: "{#SourceDir}\scripts\aspell-import";                   DestDir: "{app}\
 
 ; Interface
 Source: "{#SourceDir}\interfaces\cc\aspell.h";                  DestDir: "{app}\include"; Flags: ignoreversion
-Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\include"; Flags: ignoreversion
+Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\include\pspell"; Flags: ignoreversion
 
 ; Documentation
 Source: "{#SourceDir}\README.md";                               DestDir: "{app}"; Flags: ignoreversion
