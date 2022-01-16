@@ -63,6 +63,9 @@ Source: "{#BuildBinDir}\Release\bin\aspell.exe";                DestDir: "{app}\
 Source: "{#BuildBinDir}\Release\bin\aspell-list-dicts.exe";     DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#BuildBinDir}\Release\bin\word-list-compress.exe";    DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#BuildBinDir}\Release\bin\*.dll";                     DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
+   ; See, sharedfile:
+   ;    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\SharedDlls
+   ;    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDLLs
 
 ; Libraries
 Source: "{#BuildBinDir}\Release\lib\*";                         DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
