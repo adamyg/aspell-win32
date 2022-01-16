@@ -40,6 +40,8 @@ DirExistsWarning=no
 DisableStartupPrompt=yes
 OutputDir=@DICTIONARY_OUTPUT_DIRECTORY@
 OutputBaseFilename=aspell-@DICTIONARY_LANG@-@DICTIONARY_VERSION@-setup
+Compression=lzma2
+SolidCompression=yes
 
 [Files]
 

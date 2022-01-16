@@ -38,6 +38,8 @@ InfoBeforeFile=@ISS_SOURCE_DIRECTORY@\COPYING
 DirExistsWarning=no
 DisableStartupPrompt=yes
 OutputDir=@ISS_SETUP_DIRECTORY@
+Compression=lzma2
+SolidCompression=yes
 
 #define SourceDir "@ISS_SOURCE_DIRECTORY@"
 #define BuildDocDir "@ISS_BUILD_DIRECTORY@"

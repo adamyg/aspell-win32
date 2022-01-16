@@ -32,7 +32,6 @@ jobs:
         git submodule init
         git submodule update
         call ./mk-cmake --vs140 --release --prime
-        call ./mk-cmake --vs140 -x64 --release --prime
         choco install innosetup --version=5.6.1 --force
         @rem dir c:\
         @rem dir c:\tools
@@ -43,13 +42,11 @@ jobs:
       shell: cmd
       run: |
         call ./mk-cmake --vs140 --release --build
-        call ./mk-cmake --vs140 -x64 --release --build
 
     - name: Windows, package
       shell: cmd
       run: |
         call ./mk-cmake --vs140 --package
-        call ./mk-cmake --vs140 -x64 --package
         call ./mk-cmake --vs140 --lang en
         @exit 0
 
@@ -64,5 +61,3 @@ jobs:
       with:
        files: ./installer.vs140/*
        draft: true
-
-
