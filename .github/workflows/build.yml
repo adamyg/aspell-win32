@@ -50,15 +50,14 @@ jobs:
         call ./mk-cmake --vs140 --lang en
         @exit 0
 
-    - name: Windows, publish
-      uses: actions/upload-artifact@v2
-      with:
-        name: install-win32.vs140
-        path: ./installer.vs140/*
-
     - name: Windows, tarball
       uses: actions/upload-artifact@v2
       with:
         name: package-win32.vs140
         path: ./output.vs140/*
 
+    - name: Windows, release
+      uses: softprops/action-gh-release@v1
+      with:
+       files: ./installer.vs140/*
+       draft: true

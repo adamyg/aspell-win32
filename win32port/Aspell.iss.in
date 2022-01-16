@@ -38,12 +38,16 @@ InfoBeforeFile=@ISS_SOURCE_DIRECTORY@\COPYING
 DirExistsWarning=no
 DisableStartupPrompt=yes
 OutputDir=@ISS_SETUP_DIRECTORY@
+Compression=lzma2
+SolidCompression=yes
 
 #define SourceDir "@ISS_SOURCE_DIRECTORY@"
 #define BuildDocDir "@ISS_BUILD_DIRECTORY@"
 
 #if "@ISS_ARCHITECTURE@"=="x64"
 #define BuildBinDir "@ISS_BUILD_DIRECTORY@/x64"
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 OutputBaseFilename=aspell-@ASPELL_VERSION@-x64-setup
 
 #else
@@ -63,6 +67,9 @@ Source: "{#BuildBinDir}\Release\bin\aspell.exe";                DestDir: "{app}\
 Source: "{#BuildBinDir}\Release\bin\aspell-list-dicts.exe";     DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#BuildBinDir}\Release\bin\word-list-compress.exe";    DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "{#BuildBinDir}\Release\bin\*.dll";                     DestDir: "{app}\bin"; Flags: ignoreversion sharedfile
+   ; See, sharedfile:
+   ;    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\SharedDlls
+   ;    Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDLLs
 
 ; Libraries
 Source: "{#BuildBinDir}\Release\lib\*";                         DestDir: "{app}\lib"; Flags: ignoreversion sharedfile
@@ -74,7 +81,7 @@ Source: "{#SourceDir}\scripts\aspell-import";                   DestDir: "{app}\
 
 ; Interface
 Source: "{#SourceDir}\interfaces\cc\aspell.h";                  DestDir: "{app}\include"; Flags: ignoreversion
-Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\include"; Flags: ignoreversion
+Source: "{#SourceDir}\interfaces\cc\pspell.h";                  DestDir: "{app}\include\pspell"; Flags: ignoreversion
 
 ; Documentation
 Source: "{#SourceDir}\README.md";                               DestDir: "{app}"; Flags: ignoreversion

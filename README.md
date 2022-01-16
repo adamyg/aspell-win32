@@ -6,13 +6,13 @@ spell checker. Its main feature is that it does a superior job of suggesting pos
 replacements for a misspelled word than just about any other spell checker out there
 for the English language.
 
-The following packages need to be installed to build this package, based on aspell 0.60.8:
+The following tools need to be installed to build this package, based on aspell 0.60.8:
 
   * cmake
   * cygwin or msys
   * perl
   * Visual studio 2008+
-  * Innosetup
+  * Innosetup 5
 
 Build and package
 
