@@ -48,17 +48,17 @@ SolidCompression=yes
 Source: "{#SourceDir}\*.*"; Excludes: "Copyright,Configure,Makefile*,Readme*,*.cwl"; DestDir: "{app}\dict"; Flags: ignoreversion
 
 [Registry]
+                                                                                                                                                                                  
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries"; ValueType: string; ValueName: ""; ValueData: ""; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: string; ValueName: "Path"; ValueData: "{app}\dict"; Flags: uninsdeletevalue uninsdeletekeyifempty
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletevalue
 
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: ""; ValueData: {app}; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: "Path"; ValueData: "{app}\bin"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: string; ValueName: "UninstallString"; ValueData: {uninstallexe}; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@DICTIONARY_VERSION_MAJOR@"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@DICTIONARY_VERSION_MINOR@"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@DICTIONARY_VERSION_PATCH@"; Flags: uninsdeletevalue
+Root: HKLM; Subkey: "Software\Aspell-Dictionaries\@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@DICTIONARY_VERSION_BUILD@"; Flags: uninsdeletevalue
 
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MajorVersion";  ValueData: "@DICTIONARY_VERSION_MAJOR@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "MinorVersion";  ValueData: "@DICTIONARY_VERSION_MINOR@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "PatchVersion";  ValueData: "@DICTIONARY_VERSION_PATCH@"; Flags: uninsdeletekey
-Root: HKLM; Subkey: "Software\Aspell-@DICTIONARY_LANG@"; ValueType: dword;  ValueName: "BuildVersion";  ValueData: "@DICTIONARY_VERSION_BUILD@"; Flags: uninsdeletekey
-
-Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Dictionaries"; ValueData: "{app}\dict"; Flags: uninsdeletekey
+Root: HKLM; Subkey: "Software\Aspell"; ValueType: string; ValueName: "Dictionaries"; ValueData: "{app}\dict"; Flags: uninsdeletevalue
 
 [UninstallDelete]
 
@@ -84,14 +84,14 @@ end;
 function DictionaryInstalled(var version, uninstallcmd:string):boolean;
 var major,minor,patch,build:Cardinal;
 begin
-        Result := RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'MajorVersion', major)
-                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'MinorVersion', minor)
-                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'PatchVersion', patch)
-                  and RegQueryDWordValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'BuildVersion', build);
+        Result := RegQueryDWordValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'MajorVersion', major)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'MinorVersion', minor)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'PatchVersion', patch)
+                  and RegQueryDWordValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'BuildVersion', build);
 
-        if not RegQueryStringValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'UninstallString', uninstallcmd)
-        then if not RegQueryStringValue(HKLM, 'Software\Aspell-@DICTIONARY_LANG@', 'Uninstall', uninstallcmd)
-        then RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\Aspell-@DICTIONARY_LANG@', 'UninstallString', uninstallcmd);
+        if not RegQueryStringValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'UninstallString', uninstallcmd)
+        then if not RegQueryStringValue(HKLM, 'Software\Aspell-Dictionaries\@DICTIONARY_LANG@', 'Uninstall', uninstallcmd)
+        then RegQueryStringValue(HKLM, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\Aspell-Dictionaries\@DICTIONARY_LANG@', 'UninstallString', uninstallcmd);
         version := IntToStr(major)+'.'+IntToStr(minor)+'.'+IntToStr(patch)+'-'+IntToStr(build);
 end;
 
@@ -116,7 +116,7 @@ begin
 
         if AspellPath('')=''
         then begin
-                if MsgBox('Aspell not found. Do you want to abort?', mbConfirmation, MB_YESNO)<>IdYes
+                if MsgBox('Aspell not found. Do you want to abort?', mbConfirmation, MB_YESNO)=IdYes
                 then Result:=false;
         end;
 end;

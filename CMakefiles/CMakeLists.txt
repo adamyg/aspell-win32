@@ -132,12 +132,15 @@ endif()
 
 setup_package_version_variables(ASPELL)
 
+add_subdirectory(win32port)
+
 add_subdirectory(libaspell)
 add_subdirectory(libaspell/man-pages)
 add_subdirectory(libaspell/html-doc)
 add_subdirectory(libaspell/example)
 add_subdirectory(libaspell/list-dicts)
 add_subdirectory(libaspell/make-dicts)
+add_subdirectory(libaspell/locales)
 add_subdirectory(libpspell)
 
 add_subdirectory(PDCurses)

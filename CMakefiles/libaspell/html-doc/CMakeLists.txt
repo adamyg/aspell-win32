@@ -56,7 +56,7 @@ find_path(MAKEINFO_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" ENV P
 if (MAKEINFO_PATH STREQUAL "MAKEINFO_PATH-NOTFOUND")
         find_path(MAKEINFO_PATH makeinfo HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
-message("makeinfo: ${MAKEINFO_PATH}")
+message("makeinfo: ${MAKEINFO_PATH}/makeinfo")
 
 # targets
 foreach(html_doc ${MANUAL_PAGES})

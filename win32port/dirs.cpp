@@ -17,6 +17,7 @@
             /share          ==> /usr/lib/aspell
             /dict           ==> /usr/share/aspell
             /include        ==> /usr/include
+            /locale         ==? /usr/local/share/locale
             /doc
 
         $HOME/aspell/Dictionary
@@ -48,7 +49,7 @@
 #define _WIN32_WINNT 0x0501
 #endif
 
-#include "settings.h"
+	//#include "settings.h"
 #include "buildinfo.h"
 #include "dirs.h"
 
@@ -64,6 +65,7 @@
 #pragma comment(lib, "User32.lib")
 
 static void set_environment(void);
+static void aspell_directory(char *buffer, size_t buflen, const char *subdir, const char *regvalue);
 static int  getdlldir(char *buf, int maxlen);
 static int  getexedir(char *buf, int maxlen);
 static void unixpath(char *path);
@@ -107,8 +109,8 @@ aspell_HOME_DIR(void)
  *          <path>\etc\
  *
  *      <INSTALLPATH>
- *          X:\Program Files\<aspell>\etc           [x64]
- *          X:\Program Files (x86)\<aspell>\etc     [x86]
+ *          [x64] X:\Program Files\<aspell>\etc
+ *          [x86] X:\Program Files (x86)\<aspell>\etc
  *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
@@ -125,63 +127,45 @@ aspell_CONF_DIR(void)
     static char x_buffer[MAX_PATH];
 
     if (0 == x_buffer[0]) {
-        int len, done = FALSE;
-
-        // <DLL|EXEPATH>, generally same as INSTALLDIR
-        if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0 ||
-                (len = getexedir(x_buffer, sizeof(x_buffer))) > 0) {
-            _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\etc");
-            x_buffer[sizeof(x_buffer) - 1] = 0;
-            if (0 == _access(x_buffer, 0)) {
-                done = TRUE;
-            }
-        }
-
-        // <INSTALLPATH>
-        if (! done) {
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\%s\\etc", ASPELL_APPNAME);
-                x_buffer[sizeof(x_buffer) - 1] = 0;
-                if (0 == _access(x_buffer, 0)) {
-                    done = TRUE;
-                }
-            }
-        }
-
-        // <APPDATA>
-        if (! done)  {
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_COMMON_APPDATA, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\%s\\etc", ASPELL_APPNAME);
-                x_buffer[sizeof(x_buffer) - 1] = 0;
-                if (0 == _access(x_buffer, 0)) {
-                    done = TRUE;
-                }
-            }
-        }
-
-        // default - INSTALLPATH
-        if (! done) {
-            const char *env;
-
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "/%s/etc", ASPELL_APPNAME);
-
-            } else if (NULL != (env = getenv("ProgramFiles"))) {
-                _snprintf(x_buffer, sizeof(x_buffer), "%s/%s/etc", env, ASPELL_APPNAME);
-
-            } else {
-                _snprintf(x_buffer, sizeof(x_buffer), "c:/Program Files/%s/etc", ASPELL_APPNAME);
-            }
-            x_buffer[sizeof(x_buffer) - 1] = 0;
-            mkdir(x_buffer);
-        }
-
-        unixpath(x_buffer);
+        aspell_directory(x_buffer, sizeof(x_buffer), "etc", NULL);
 #if defined(DIR_VERBOSE)
-        printf("CONF_DIR=%s\n", x_buffer);
+        printf("ETC_DIR=%s\n", x_buffer);
+#endif
+    }
+    return x_buffer;
+}
+
+
+/**
+ *  Retrieve global/share configuration path, equivalent to '/usr/locale/share/locale'.
+ *
+ *      <DLL|EXEPATH>
+ *          <path>\locale\
+ *
+ *      <INSTALLPATH>
+ *          [x64] X:\Program Files\<aspell>\locale
+ *          [x86] X:\Program Files (x86)\<aspell>\locale
+ *
+ *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
+ *              or getenv(ProgramFiles)
+ *
+ *      <APPDATA>
+ *          X:\ProgramData\<aspell>\share\
+ *          X:\Documents and Settings\All Users\Application Data\<aspell>\share\
+ *
+ *              SHGetFolderPath(CSIDL_COMMON_APPDATA)
+ *              or getenv(ALLUSERSPROFILE)
+ *
+ */
+extern "C" const char *
+aspell_LOCALE_DIR(void)
+{
+    static char x_buffer[MAX_PATH];
+
+    if (0 == x_buffer[0]) {
+        aspell_directory(x_buffer, sizeof(x_buffer), "locale", NULL);
+#if defined(DIR_VERBOSE)
+        printf("LOCALE_DIR=%s\n", x_buffer);
 #endif
     }
     return x_buffer;
@@ -206,7 +190,7 @@ aspell_DICT_DIR(void)
 
         // <DLL|EXEPATH>, generally same as INSTALLDIR
         if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0 ||
-                (len = getexedir(x_buffer, sizeof(x_buffer))) > 0) {
+                        (len = getexedir(x_buffer, sizeof(x_buffer))) > 0) {
             _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\dict");
             x_buffer[sizeof(x_buffer) - 1] = 0;
             if (0 == _access(x_buffer, 0)) {
@@ -264,14 +248,17 @@ aspell_DICT_DIR(void)
  *      <DLL|EXEPATH>
  *          <path>\share\
  *
+ *      <REGISTRY>
+ &          <base>\Data
+ *
  *      <INSTALLPATH>
- *          X:\Program Files\<aspell>\share         [x64]
- *          X:\Program Files (x86)\<aspell>\share   [x86]
+ *          [x64] X:\Program Files\<aspell>\share
+ *          [x86] X:\Program Files (x86)\<aspell>\share
  *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
  *
- *      <HOME>
+ *      <HOME>      TODO/XXX
  *          X:\User\<USERNAME>\<aspell>\Dictionaries\
  *
  *      <APPDATA>
@@ -288,76 +275,7 @@ aspell_DATA_DIR(void)
     static char x_buffer[MAX_PATH];
 
     if (0 == x_buffer[0]) {
-        int len, done = FALSE;
-
-        // <DLL|EXEPATH>, generally same as INSTALLDIR
-        if ((len = getdlldir(x_buffer, sizeof(x_buffer))) > 0 ||
-                        (len = getexedir(x_buffer, sizeof(x_buffer))) > 0) {
-            _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\share");
-            x_buffer[sizeof(x_buffer) - 1] = 0;
-            if (0 == _access(x_buffer, 0)) {
-                done = TRUE;
-            }
-        }
-
-        // Registry
-        {   HKEY hKey = 0;
-            if (ERROR_SUCCESS == RegOpenKeyExA(HKEY_LOCAL_MACHINE, "Software\\Aspell", 0, KEY_READ, &hKey)) {
-                DWORD dwSize = sizeof(x_buffer);
-
-                x_buffer[0] = 0;
-                if (ERROR_SUCCESS == RegQueryValueExA(hKey, "Data", NULL, NULL, (LPBYTE)x_buffer, &dwSize) && x_buffer[0]) {
-                    if (0 == _access(x_buffer, 0)) {
-                        done = TRUE;
-                    }
-                }
-                RegCloseKey(hKey);
-            }
-        }
-
-        // <INSTALLPATH>
-        if (! done) {
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\%s\\share", ASPELL_APPNAME);
-                x_buffer[sizeof(x_buffer) - 1] = 0;
-                if (0 == _access(x_buffer, 0)) {
-                    done = TRUE;
-                }
-            }
-        }
-
-        // <APPDATA>
-        if (! done)  {
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_COMMON_APPDATA, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\%s\\share", ASPELL_APPNAME);
-                x_buffer[sizeof(x_buffer) - 1] = 0;
-                if (0 == _access(x_buffer, 0)) {
-                    done = TRUE;
-                }
-            }
-        }
-
-        // default - INSTALLPATH
-        if (! done) {
-            const char *env;
-
-            if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, x_buffer))) {
-                len = strlen(x_buffer);
-                _snprintf(x_buffer + len, sizeof(x_buffer) - len, "\\%s\\share", ASPELL_APPNAME);
-
-            } else if (NULL != (env = getenv("ProgramFiles"))) {
-                _snprintf(x_buffer, sizeof(x_buffer), "%s/%s/share", env, ASPELL_APPNAME);
-
-            } else {
-                _snprintf(x_buffer, sizeof(x_buffer), "c:/Program Files/%s/share", ASPELL_APPNAME);
-            }
-            x_buffer[sizeof(x_buffer) - 1] = 0;
-            mkdir(x_buffer);
-        }
-
-        unixpath(x_buffer);
+        aspell_directory(x_buffer, sizeof(x_buffer), "share", "Data");
 #if defined(DIR_VERBOSE)
         printf("DATA_DIR=%s\n", x_buffer);
 #endif
@@ -373,8 +291,8 @@ aspell_DATA_DIR(void)
  *          <path>
  *
  *      <INSTALLPATH>
- *          X:\Program Files\<aspell>               [x64]
- *          X:\Program Files (x86)\<aspell>         [x86]
+ *          [x64] X:\Program Files\<aspell>
+ *          [x86] X:\Program Files (x86)\<aspell>
  *
  *              SHGetFolderPath(CSIDL_PROGRAM_FILES)
  *              or getenv(ProgramFiles)
@@ -416,7 +334,7 @@ aspell_PREFIX_DIR(void)
                 _snprintf(x_buffer, sizeof(x_buffer), "c:/Program Files/%s/", ASPELL_APPNAME);
             }
             x_buffer[sizeof(x_buffer) - 1] = 0;
-            mkdir(x_buffer);
+            _mkdir(x_buffer);                   // ignore error
         }
 
         unixpath(x_buffer);
@@ -455,7 +373,7 @@ set_environment(void)
                 if (GetLocaleInfoA(lcid, LOCALE_SISO639LANGNAME, iso639, sizeof(iso639)) &&
                         GetLocaleInfoA(lcid, LOCALE_SISO3166CTRYNAME, iso3166, sizeof(iso3166))) {
 
-                    snprintf(lang, sizeof(lang), "%s_%s", iso639, iso3166); // "9_9"
+                    _snprintf(lang, sizeof(lang), "%s_%s", iso639, iso3166); // "9_9"
                     lang[sizeof(lang) - 1] = '\0';
 
                     _putenv_s("LANG", lang);    // assign LANG
@@ -463,6 +381,87 @@ set_environment(void)
             }
         }
     }
+}
+
+
+/**
+ *  Resolve application relative directory.
+ */
+static void
+aspell_directory(char *buffer, size_t buflen, const char *subdir, const char *regvalue)
+{
+    int len, done = FALSE;
+
+    // <DLL|EXEPATH>, generally same as INSTALLDIR
+    if ((len = getdlldir(buffer, buflen)) > 0 ||
+                (len = getexedir(buffer, buflen)) > 0) {
+        _snprintf(buffer + len, buflen - len, "\\%s", subdir);
+        buffer[buflen - 1] = 0;
+        if (0 == _access(buffer, 0)) {
+            done = TRUE;
+        }
+    }
+
+    // <REGISTRY>, optional
+    if (regvalue)
+    {
+        HKEY hKey = 0;
+        if (ERROR_SUCCESS == RegOpenKeyExA(HKEY_LOCAL_MACHINE, "Software\\Aspell", 0, KEY_READ, &hKey)) {
+            DWORD dwSize = buflen;
+
+            buffer[0] = 0;
+            if (ERROR_SUCCESS == RegQueryValueExA(hKey, regvalue, NULL, NULL, (LPBYTE)buffer, &dwSize) && buffer[0]) {
+                if (0 == _access(buffer, 0)) {
+                    done = TRUE;
+                }
+            }
+            RegCloseKey(hKey);
+        }
+    }
+
+    // <INSTALLPATH>
+    if (! done) {
+        if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, buffer))) {
+            len = strlen(buffer);
+            _snprintf(buffer + len, buflen - len, "\\%s\\%s", ASPELL_APPNAME, subdir);
+            buffer[buflen - 1] = 0;
+            if (0 == _access(buffer, 0)) {
+                done = TRUE;
+            }
+        }
+    }
+
+    // <APPDATA>
+    if (! done) {
+        if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_COMMON_APPDATA, NULL, 0, buffer))) {
+            len = strlen(buffer);
+            _snprintf(buffer + len, buflen - len, "\\%s\\%s", ASPELL_APPNAME, subdir);
+            buffer[buflen - 1] = 0;
+            if (0 == _access(buffer, 0)) {
+                done = TRUE;
+            }
+        }
+    }
+
+    // default - INSTALLPATH
+    if (! done) {
+        const char *env;
+
+        if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_PROGRAM_FILES, NULL, 0, buffer))) {
+            len = strlen(buffer);
+            _snprintf(buffer + len, buflen - len, "\\%s\\%s", ASPELL_APPNAME, subdir);
+
+        } else if (NULL != (env = getenv("ProgramFiles"))) {
+            _snprintf(buffer, buflen, "%s/%s/%s", env, ASPELL_APPNAME, subdir);
+
+        } else {
+            _snprintf(buffer, buflen, "c:/Program Files/%s/%s", ASPELL_APPNAME, subdir);
+        }
+        buffer[buflen - 1] = 0;
+        _mkdir(buffer);                         // ignore error
+    }
+
+    unixpath(buffer);
 }
 
 
@@ -492,7 +491,7 @@ getdlldir(char *buf, int maxlen)
             cp[1] = '\0';                       // remove library
             if ((cp - 6) >= buf) {
                 char *cp4 = cp - 4;
-                if (0 == stricmp(cp4, "\\bin\\")) {
+                if (0 == _stricmp(cp4, "\\bin\\")) {
                     cp = cp4;
                     cp[1] = '\0';               // remove "bin\\"
                 }
@@ -529,7 +528,7 @@ getexedir(char *buf, int maxlen)
             cp[1] = '\0';                       // remove program, retain trailing '\'
             if ((cp - 6) >= buf) {
                 char *cp4 = cp - 4;
-                if (0 == stricmp(cp4, "\\bin\\")) {
+                if (0 == _stricmp(cp4, "\\bin\\")) {
                     cp = cp4;
                     cp[1] = '\0';               // remove "bin\\"
                 }

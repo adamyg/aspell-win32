@@ -78,11 +78,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 # Dependencies
 ################################################################################
 
-target_link_libraries(${PROJECT_NAME} PDCurses libaspell)
-add_dependencies(${PROJECT_NAME}
-        PDCurses
-        libaspell
-        )
+target_link_libraries(${PROJECT_NAME} PDCurses libaspell win32port_MD)
 
 
 ################################################################################

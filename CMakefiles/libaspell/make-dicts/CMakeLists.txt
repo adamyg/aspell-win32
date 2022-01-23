@@ -135,6 +135,7 @@ set(DICTIONARIES
 add_custom_target(dictionaries)
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
+
 # --- installer
 option(PACKAGE_INTERACTIVE "Interactive packaging creation" ON)
 if (PACKAGE_INTERACTIVE)
@@ -143,28 +144,31 @@ else()
         set(ISS_COMPILER "C:/Program Files (x86)/Inno Setup 5/iscc")
 endif()
 
+
 # --- destination
 set(DICTIONARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../installer.vs${MSVC_TOOLSET_VERSION}") ##FIXME: target
 file(MAKE_DIRECTORY "${DICTIONARY_OUTPUT_DIRECTORY}")
 
+
 # --- toolchain
-find_path(BASH_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" ENV PATH) #cygwin
+find_path(BASH_PATH bash.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
 if (BASH_PATH STREQUAL "BASH_PATH-NOTFOUND")
-        find_path(BASH_PATH makeinfo HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(BASH_PATH bash.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("bash: ${BASH_PATH}/bash")
 
-find_path(WGET_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" ENV PATH) #cygwin
+find_path(WGET_PATH wget.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
 if (WGET_PATH STREQUAL "WGET_PATH-NOTFOUND")
-        find_path(WGET_PATH makeinfo HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(WGET_PATH wget.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("wget: ${WGET_PATH}/wget")
 
-find_path(TAR_PATH makeinfo HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" ENV PATH) #cygwin
+find_path(TAR_PATH tar.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
 if (TAR_PATH STREQUAL "TAR_PATH-NOTFOUND")
-        find_path(TAR_PATH makeinfo HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(TAR_PATH tar.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("tar:  ${TAR_PATH}/tar")
+
 
 # --- targets
 

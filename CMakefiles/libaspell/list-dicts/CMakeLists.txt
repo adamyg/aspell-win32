@@ -60,9 +60,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 ################################################################################
 
 target_link_libraries(${PROJECT_NAME} libaspell${ASPELL_SHARED_VERSION}${SHARED_ARCH})
-add_dependencies(${PROJECT_NAME}
-        libaspell
-        )
 
 ################################################################################
 # Compile and link options
