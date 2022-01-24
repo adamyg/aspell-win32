@@ -131,6 +131,7 @@ else()
 endif()
 
 setup_package_version_variables(ASPELL)
+add_definitions(-DENABLE_NLS=1)
 
 add_subdirectory(win32port)
 

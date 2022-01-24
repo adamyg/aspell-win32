@@ -142,7 +142,8 @@ set(Source_Files__common
         "../../submodule/aspell/common/filter.cpp"
         "../../submodule/aspell/common/fstream.cpp"
         "../../submodule/aspell/common/getdata.cpp"
-        "../../submodule/aspell/common/gettext_init.cpp"
+###     "../../submodule/aspell/common/gettext_init.cpp"
+        "../../win32port/gettext_init.cpp"
         "../../submodule/aspell/common/info.cpp"
         "../../submodule/aspell/common/iostream.cpp"
         "../../submodule/aspell/common/itemize.cpp"
@@ -248,6 +249,7 @@ target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} win3
 
 include_directories(PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port/gen"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port/libintl"
         )
 
 include_directories(PRIVATE
