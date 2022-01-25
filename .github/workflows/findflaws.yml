@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: flawfinder-action 
+
+      - name: flawfinder-action
         uses: deep5050/flawfinder-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN}}
@@ -19,3 +20,10 @@ jobs:
           inputs_flag:
           dot_directories:
           allow_link:
+          
+    - name: flawfinder-results
+      uses: actions/upload-artifact@v2
+      with:
+        name: flawfinder_report.html
+        path: flawfinder_report.html
+          
