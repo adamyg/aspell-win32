@@ -69,6 +69,7 @@ set(Source_Files_intl
         "../../win32port/libintl/compat_strlcat.c"
         "../../win32port/libintl/compat_strlcpy.c"
         "../../win32port/libintl/compat_mman.c"
+        "../../win32port/libintl/compat_langinfo.c"
         )
 source_group("Source Files\\intl" FILES ${Source_Files_intl})
 
