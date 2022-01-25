@@ -1,7 +1,5 @@
-# https://github.com/marketplace/actions/flawfinder-action
 name: flawfinder
 
-#on: [push]
 on: [workflow_dispatch]
 
 jobs:
@@ -28,4 +26,6 @@ jobs:
         with:
           name: flawfinder_report.html
           path: flawfinder_report.html
+
+# https://github.com/marketplace/actions/flawfinder-action
 
