@@ -20,10 +20,10 @@ jobs:
           inputs_flag:
           dot_directories:
           allow_link:
-          
-    - name: flawfinder-results
-      uses: actions/upload-artifact@v2
-      with:
-        name: flawfinder_report.html
-        path: flawfinder_report.html
+      
+      - name: flawfinder-results
+        uses: actions/upload-artifact@v2
+        with:
+          name: flawfinder_report.html
+          path: flawfinder_report.html
           
