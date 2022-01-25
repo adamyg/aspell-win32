@@ -1,7 +1,8 @@
 # https://github.com/marketplace/actions/flawfinder-action
 name: flawfinder
+
 #on: [push]
-on:
+on: [workflow_dispatch]
 
 jobs:
   build:
