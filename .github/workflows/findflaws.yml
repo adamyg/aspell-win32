@@ -1,6 +1,7 @@
 # https://github.com/marketplace/actions/flawfinder-action
 name: flawfinder
-on: [push]
+#on: [push]
+on:
 
 jobs:
   build:
@@ -20,10 +21,10 @@ jobs:
           inputs_flag:
           dot_directories:
           allow_link:
-      
+
       - name: flawfinder-results
         uses: actions/upload-artifact@v2
         with:
           name: flawfinder_report.html
           path: flawfinder_report.html
-          
+
