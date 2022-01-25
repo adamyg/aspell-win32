@@ -47,7 +47,7 @@ set(ALL_FILES
 add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
 use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
-target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} libaspell${ASPELL_SHARED_VERSION}${SHARED_ARCH})
+target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} libaspell${ASPELL_SHARED_VERSION}${SHARED_ARCH} win32port_MT)
 
 
 ################################################################################

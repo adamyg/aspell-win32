@@ -129,12 +129,6 @@ set(Header_Files__speller
         )
 source_group("Header Files\\speller" FILES ${Header_Files__speller})
 
-set(Header_Files__win32port
-        "../../win32port/dirent.h"
-        "../../win32port/settings.h"
-        )
-source_group("Header Files\\win32port" FILES ${Header_Files__win32port})
-
 set(Source_Files__common
         "../../submodule/aspell/common/cache.cpp"
         "../../submodule/aspell/common/can_have_error.cpp"
@@ -148,7 +142,8 @@ set(Source_Files__common
         "../../submodule/aspell/common/filter.cpp"
         "../../submodule/aspell/common/fstream.cpp"
         "../../submodule/aspell/common/getdata.cpp"
-        "../../submodule/aspell/common/gettext_init.cpp"
+###     "../../submodule/aspell/common/gettext_init.cpp"
+        "../../win32port/gettext_init.cpp"
         "../../submodule/aspell/common/info.cpp"
         "../../submodule/aspell/common/iostream.cpp"
         "../../submodule/aspell/common/itemize.cpp"
@@ -221,24 +216,15 @@ set(Source_Files__tokenizer
         )
 source_group("Source Files\\tokenizer" FILES ${Source_Files__tokenizer})
 
-set(Source_Files__win32port
-        "../../win32port/dirent.c"
-        "../../win32port/dirs.cpp"
-        "../../win32port/dirs.h"
-        )
-source_group("Source Files\\win32port" FILES ${Source_Files__win32port})
-
 set(ALL_FILES
         ${Header_Files__common}
         ${Header_Files__lib}
         ${Header_Files__speller}
-        ${Header_Files__win32port}
         ${Source_Files__common}
         ${Source_Files__filter}
         ${Source_Files__lib}
         ${Source_Files__speller}
         ${Source_Files__tokenizer}
-        ${Source_Files__win32port}
         )
 
 
@@ -247,16 +233,14 @@ set(ALL_FILES
 ################################################################################
 
 include_directories(${CMAKE_BINARY_DIR})
-configure_file(
-        "../../win32port/BuildInfo.h.in"
-        "${CMAKE_BINARY_DIR}/BuildInfo.h" @ONLY
-        )
 
 add_library(${PROJECT_NAME} STATIC ${ALL_FILES})
 use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 
 add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
 use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
+
+target_link_libraries(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} win32port_MT)
 
 
 ################################################################################
@@ -265,6 +249,7 @@ use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGU
 
 include_directories(PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port/gen"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port/libintl"
         )
 
 include_directories(PRIVATE
@@ -302,7 +287,7 @@ set_property(TARGET ${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} PROPER
         #
         # Your personal wordlists will be saved in the prefix directory with their names changed from
         # .aspell.lang.* to lang.* (you can override the path by setting the HOME environment variable).
-        #
+
 ##add_compile_definitions(
 ##      "ENABLE_WIN32_RELOCATABLE=1"
 ##      )

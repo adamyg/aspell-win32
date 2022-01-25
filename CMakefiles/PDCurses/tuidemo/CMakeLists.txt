@@ -60,9 +60,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 ################################################################################
 
 target_link_libraries(${PROJECT_NAME} PDCurses)
-add_dependencies(${PROJECT_NAME}
-        PDCurses
-        )
 
 ################################################################################
 # Compile and link options

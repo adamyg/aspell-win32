@@ -132,7 +132,7 @@
       <AdditionalOptions>/DPDC_DLL_BUILD=1 /D_CRT_SECURE_NO_WARNINGS=1</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>$(OutDir)PDCurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)PDCurses.lib;$(OutDir)libwin32port.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <GenerateMapFile>true</GenerateMapFile>
@@ -187,7 +187,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
-      <AdditionalDependencies>$(OutDir)PDCurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)PDCurses.lib;$(OutDir)libwin32port.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|Win32'">

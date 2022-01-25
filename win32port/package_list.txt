@@ -1,0 +1,369 @@
+
+  C:\Program Files (x86)\Aspell-0.60
+
+        COPYING
+        README.md
+
+  C:\Program Files (x86)\Aspell-0.60\bin
+
+        aspell-list-dicts.exe
+        aspell.exe
+        libaspell-0.60.dll
+        libpspell-0.60.dll
+        PDCurses-3.9.dll
+        word-list-compress.exe
+
+  C:\Program Files (x86)\Aspell-0.60\doc
+
+        Aspell-dictionaries.url
+        Aspell-support.url
+        Aspell-win32.url
+        Aspell.url
+
+  C:\Program Files (x86)\Aspell-0.60\doc\aspell
+
+        Adding-Support-For-Other-Languages.html
+        Affix-Compression.html
+        Aspell-Suggestion-Strategy.html
+        Authors.html
+        AWLI-files.html
+        Basic-Usage.html
+        Binary-Compatibility.html
+        ChangeLog.html
+        Compiling-the-Word-List.html
+        Controlling-the-Behavior-of-Compound-Words.html
+        Controlling-the-Behavior-of-Run_002dtogether-Words.html
+        Copying.html
+        Creating-A-New-Character-Set.html
+        Creating-an-Individual-Word-List.html
+        Creating-An-Official-Dictionary-Package.html
+        Curses-Notes.html
+        Customizing-Aspell.html
+        data_002dencoding.html
+        Dictionary-Naming.html
+        Differences-From-Ispell.html
+        Dumping-Configuration-Values.html
+        Dumping-the-Contents-of-the-Word-List.html
+        Filter-Options.html
+        Format-of-the-Personal-and-Replacement-Dictionaries.html
+        Format-of-the-Personal-Dictionary.html
+        Generic-Install-Instructions.html
+        GNU-Free-Documentation-License.html
+        GNU-Lesser-General-Public-License.html
+        How-Aspell-Selects-an-Appropriate-Dictionary.html
+        HTML-Manuals-and-_0022make-clean_0022.html
+        Implementation-Notes.html
+        index.html
+        Installing.html
+        Introduction.html
+        Listing-Available-Dictionaries.html
+        Loadable-Filter-Notes.html
+        Notes-on-8_002dbit-Characters.html
+        Notes-on-Storing-Replacement-Pairs.html
+        Notes-on-the-Different-Suggestion-Modes.html
+        Notes-on-the-Prefix-Option.html
+        Notes-on-Typo_002dAnalysis.html
+        Notes-on-Various-Filters-and-Filter-Modes.html
+        Notes-on-Various-Options.html
+        Phonetic-Code.html
+        Replacement-Tables.html
+        Specifying-Options.html
+        Spellchecking-Individual-Files.html
+        Support.html
+        The-Language-Data-File.html
+        The-Options.html
+        The-Simple-Soundslike.html
+        Through-A-Pipe.html
+        Through-the-C-API.html
+        Upgrading-from-a-Pre_002d0_002e50-snapshot.html
+        Upgrading-from-Aspell-0_002e50.html
+        Upgrading-from-Aspell-0_002e60_002e7.html
+        Upgrading-from-Aspell-_002e33_002fPspell-_002e12.html
+        Using-32_002dBit-Dictionaries-on-a-64_002dBit-System.html
+        Using-Aspell-as-a-Replacement-for-Ispell.html
+        Using-Aspell-with-other-Applications.html
+        Using-aspell_002dimport.html
+        Using-Multi-Dictionaries.html
+        WIN32-Notes.html
+        Win32_002dDirectories.html
+        Working-With-Affix-Info-in-Word-Lists.html
+        Working-With-Dictionaries.html
+        Writing-programs-to-use-Aspell.html
+
+  C:\Program Files (x86)\Aspell-0.60\doc\aspell-dev
+
+        Build-Sources.html
+        Config-Class.html
+        Constructor-Function.html
+        Copying.html
+        C_002b_002b-Standard-Library.html
+        Data-Structures.html
+        Error-Handling.html
+        Filter-Default-Values.html
+        Filter-Description-File.html
+        Filter-Interface.html
+        Filter-Modes.html
+        Filter-Overview.html
+        GNU-Free-Documentation-License.html
+        How-It-All-Works.html
+        How-to-Submit-a-Patch.html
+        index.html
+        Interface-Macros.html
+        I_002fO.html
+        Link-Filters-Static.html
+        Mk_002dSrc-Script.html
+        Part-1-_002d-Compiled-Dictionary-Format.html
+        Part-2-_002d-Quickly-Finding-Similar-Soundslike.html
+        Part-3.html
+        Place-Sources.html
+        Programmer_0027s-Interface.html
+        Recommended-Standard-Aspell.html
+        Reinstall-Aspell.html
+        Smart-Pointers.html
+        Source-Code-Layout.html
+        Strings.html
+        Style-Guidelines.html
+        Templates.html
+        Test-Filter-Installed.html
+
+  C:\Program Files (x86)\Aspell-0.60\doc\man
+
+        aspell-import.txt
+        aspell.txt
+        prezip-bin.txt
+        pspell-config.txt
+        run-with-aspell.txt
+        word-list-compress.txt
+
+  C:\Program Files (x86)\Aspell-0.60\include
+
+        aspell.h
+
+  C:\Program Files (x86)\Aspell-0.60\include\pspell
+
+        pspell.h
+
+  C:\Program Files (x86)\Aspell-0.60\lib
+
+        libaspell-0.60.exp
+        libaspell-0.60.lib
+        libaspell.lib
+        libpspell-0.60.exp
+        libpspell-0.60.lib
+        PDCurses-3.9.exp
+        PDCurses-3.9.lib
+        PDCurses.lib
+        win32port_MD.lib
+        win32port_MT.lib
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ast\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\be\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ca\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\cs\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\da\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\de\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\en_GB\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\eo\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\es\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\fi\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\fr\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\fur\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ga\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\hr\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\id\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\it\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ja\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\mn\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ms\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\nl\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\pl\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\pt\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\pt_BR\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ro\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\ru\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\rw\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\sk\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\sl\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\sr\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\sv\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\tg\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\uk\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\vi\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\wa\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\locale\zh_CN\LC_MESSAGES
+
+        aspell.mo
+
+  C:\Program Files (x86)\Aspell-0.60\share
+
+        aspell-import
+        ccpp.amf
+        comment.amf
+        cp1250.cmap
+        cp1250.cset
+        cp1251.cmap
+        cp1251.cset
+        cp1252.cmap
+        cp1252.cset
+        cp1253.cmap
+        cp1253.cset
+        cp1254.cmap
+        cp1254.cset
+        cp1255.cmap
+        cp1255.cset
+        cp1256.cmap
+        cp1256.cset
+        cp1257.cmap
+        cp1257.cset
+        cp1258.cmap
+        cp1258.cset
+        dvorak.kbd
+        email.amf
+        html.amf
+        iso-8859-1.cmap
+        iso-8859-1.cset
+        iso-8859-10.cmap
+        iso-8859-10.cset
+        iso-8859-11.cmap
+        iso-8859-11.cset
+        iso-8859-13.cmap
+        iso-8859-13.cset
+        iso-8859-14.cmap
+        iso-8859-14.cset
+        iso-8859-15.cmap
+        iso-8859-15.cset
+        iso-8859-16.cmap
+        iso-8859-16.cset
+        iso-8859-2.cmap
+        iso-8859-2.cset
+        iso-8859-3.cmap
+        iso-8859-3.cset
+        iso-8859-4.cmap
+        iso-8859-4.cset
+        iso-8859-5.cmap
+        iso-8859-5.cset
+        iso-8859-6.cmap
+        iso-8859-6.cset
+        iso-8859-7.cmap
+        iso-8859-7.cset
+        iso-8859-8.cmap
+        iso-8859-8.cset
+        iso-8859-9.cmap
+        iso-8859-9.cset
+        koi8-r.cmap
+        koi8-r.cset
+        koi8-u.cmap
+        koi8-u.cset
+        markdown.amf
+        none.amf
+        nroff.amf
+        perl.amf
+        sgml.amf
+        split.kbd
+        standard.kbd
+        tex.amf
+        texinfo.amf
+        url.amf
+

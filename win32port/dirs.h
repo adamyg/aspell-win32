@@ -1,5 +1,3 @@
-#ifndef DIRS_H_INCLUDED
-#define DIRS_H_INCLUDED
 #pragma once
 /*
  *  WIN32 -- directories
@@ -17,5 +15,4 @@ extern "C" const char *aspell_CONF_DIR(void);
 extern "C" const char *aspell_DATA_DIR(void);
 extern "C" const char *aspell_DICT_DIR(void);
 extern "C" const char *aspell_PREFIX_DIR(void);
-
-#endif //DIRS_H_INCLUDED
+extern "C" const char *aspell_LOCALE_DIR(void);

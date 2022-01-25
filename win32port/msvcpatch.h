@@ -9,4 +9,7 @@
 #define snprintf _snprintf
 #endif //1900
 
+#pragma warning(disable:4800) // forcing value to bool true or false.
+#pragma warning(disable:4996) // 'xxx': The POSIX name for this item is deprecated.
+
 #endif //_MSC_VER

@@ -47,7 +47,6 @@
     <ClCompile Include="..\..\submodule\aspell\common\filter.cpp" />
     <ClCompile Include="..\..\submodule\aspell\common\fstream.cpp" />
     <ClCompile Include="..\..\submodule\aspell\common\getdata.cpp" />
-    <ClCompile Include="..\..\submodule\aspell\common\gettext_init.cpp" />
     <ClCompile Include="..\..\submodule\aspell\common\info.cpp" />
     <ClCompile Include="..\..\submodule\aspell\common\iostream.cpp" />
     <ClCompile Include="..\..\submodule\aspell\common\itemize.cpp" />
@@ -102,8 +101,7 @@
     <ClCompile Include="..\..\submodule\aspell\modules\speller\default\typo_editdist.cpp" />
     <ClCompile Include="..\..\submodule\aspell\modules\speller\default\writable.cpp" />
     <ClCompile Include="..\..\submodule\aspell\modules\tokenizer\basic.cpp" />
-    <ClCompile Include="..\..\win32port\dirent.c" />
-    <ClCompile Include="..\..\win32port\dirs.cpp" />
+    <ClCompile Include="..\..\win32port\gettext_init.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\submodule\aspell\common\asc_ctype.hpp" />
@@ -192,9 +190,8 @@
     <ClInclude Include="..\..\submodule\aspell\modules\speller\default\vector_hash.hpp" />
     <ClInclude Include="..\..\submodule\aspell\modules\speller\default\weights.hpp" />
     <ClInclude Include="..\..\submodule\aspell\modules\speller\default\wordinfo.hpp" />
-    <ClInclude Include="..\..\win32port\dirs.h" />
+    <ClInclude Include="..\..\win32port\msvcpatch.h" />
     <ClInclude Include="..\..\win32port\settings.h" />
-    <ClInclude Include="..\..\win32port\dirent.h" />
     <ClInclude Include="..\BuildInfo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -291,7 +288,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../win32port/libintl;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -299,7 +296,7 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1 /DENABLE_NLS=1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -312,7 +309,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugShared|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../win32port/libintl;../../submodule/aspell/common;../../msvc2015</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -321,10 +318,10 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS=1  /DENABLE_NLS=1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)libwin32port.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>true</MapExports>
@@ -335,13 +332,14 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../win32port/libintl;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/DENABLE_NLS=1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -357,7 +355,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../win32port;../../win32port/gen;../../win32port/libintl;../../submodule/aspell/common;../../msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_NDEBUG;_WINDOWS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -365,6 +363,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/DENABLE_NLS=1 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -374,6 +373,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <OutputFile>$(OutDir)$(TargetName)-0.60$(TargetExt)</OutputFile>
       <ModuleDefinitionFile>../../win32port/libaspell.def</ModuleDefinitionFile>
+      <AdditionalDependencies>$(OutDir)libwin32port.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseShared|x64'">

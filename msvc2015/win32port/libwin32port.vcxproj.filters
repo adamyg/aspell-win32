@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\libiconv">
+      <UniqueIdentifier>{fbcbace1-37fe-4632-9733-a66bbd1e58c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libiconv">
+      <UniqueIdentifier>{7568007c-e4b0-433f-9abf-fcb6242966f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libintl">
+      <UniqueIdentifier>{1529ab23-0919-4aad-a1f1-3b9826519712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libintl">
+      <UniqueIdentifier>{a14815fb-a683-4b73-9154-42898fc5e92c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libintl\sys">
+      <UniqueIdentifier>{d8c3085c-afc6-46b7-b462-922f4fb941ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libcitrus">
+      <UniqueIdentifier>{80456871-51bf-44f8-ac9d-83f0817fa8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libcitrus">
+      <UniqueIdentifier>{bdbda21d-3069-465a-a4e7-77c6a3f5e9be}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\win32port\dirent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\dirs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libiconv\win_iconv.c">
+      <Filter>Source Files\libiconv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\compat_mman.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\compat_strsep.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\gettext.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\gettext_dummy.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\gettext_iconv.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\plural_parser.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\strhash.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\sysdep.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\textdomain.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\tfind.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\tsearch.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libcitrus\citrus_bcs.c">
+      <Filter>Source Files\libcitrus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libcitrus\citrus_memstream.c">
+      <Filter>Source Files\libcitrus</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\compat_strlcpy.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\compat_strlcat.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\win32port\libintl\compat_langinfo.c">
+      <Filter>Source Files\libintl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\win32port\dirent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\dirs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libiconv\iconv.h">
+      <Filter>Header Files\libiconv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\libintl_local.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\pathnames.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\plural_parser.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\langinfo.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\search.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\libintl.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\sys\cdefs.h">
+      <Filter>Header Files\libintl\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\sys\mman.h">
+      <Filter>Header Files\libintl\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\sys\msinttypes.h">
+      <Filter>Header Files\libintl\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\sys\param.h">
+      <Filter>Header Files\libintl\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\sys\utypes.h">
+      <Filter>Header Files\libintl\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libcitrus\citrus_bcs.h">
+      <Filter>Header Files\libcitrus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libcitrus\citrus_memstream.h">
+      <Filter>Header Files\libcitrus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libcitrus\citrus_namespace.h">
+      <Filter>Header Files\libcitrus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libcitrus\citrus_region.h">
+      <Filter>Header Files\libcitrus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libcitrus\citrus_types.h">
+      <Filter>Header Files\libcitrus</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\win32port\libintl\namespace.h">
+      <Filter>Header Files\libintl</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
