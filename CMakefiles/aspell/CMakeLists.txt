@@ -64,6 +64,7 @@ use_props(${PROJECT_NAME} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")
 include_directories(${CMAKE_BINARY_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/../../submodule/PDCurses"
+        "${CMAKE_CURRENT_SOURCE_DIR}/../../win32port/libintl"
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
