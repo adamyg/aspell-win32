@@ -151,21 +151,21 @@ file(MAKE_DIRECTORY "${DICTIONARY_OUTPUT_DIRECTORY}")
 
 
 # --- toolchain
-find_path(BASH_PATH NAMES bash bash.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
+find_path(BASH_PATH NAMES bash bash.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" "c:/tools/cygwin" NO_SYSTEM_ENVIRONMENT_PATH) #cygwin
 if (BASH_PATH STREQUAL "BASH_PATH-NOTFOUND")
-        find_path(BASH_PATH NAMES bash bash.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(BASH_PATH NAMES bash bash.exe HINTS "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("bash: ${BASH_PATH}/bash")
 
-find_path(WGET_PATH wget.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
+find_path(WGET_PATH wget.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" "c:/tools/cygwin" NO_SYSTEM_ENVIRONMENT_PATH) #cygwin
 if (WGET_PATH STREQUAL "WGET_PATH-NOTFOUND")
-        find_path(WGET_PATH wget.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(WGET_PATH wget.exe HINTS "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("wget: ${WGET_PATH}/wget")
 
-find_path(TAR_PATH tar.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
+find_path(TAR_PATH tar.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin" "c:/tools/cygwin" NO_SYSTEM_ENVIRONMENT_PATH) #cygwin
 if (TAR_PATH STREQUAL "TAR_PATH-NOTFOUND")
-        find_path(TAR_PATH tar.exe HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
+        find_path(TAR_PATH tar.exe HINTS "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("tar:  ${TAR_PATH}/tar")
 
