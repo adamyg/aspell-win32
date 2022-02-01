@@ -1,0 +1,107 @@
+/*
+ * windows resource file
+ *
+ * This file is part of the libaspell-win32.
+ *
+ * Copyright (C) 2021-2022 by Adam Young under the GNU LGPL
+ * license version 2.0 or 2.1.  You should have received a copy of the
+ * LGPL license along with this library if you did not you can find it
+ * at http://www.gnu.org/.
+ */
+
+#include "Buildinfo.h"
+
+#define RC_VERSION_1            @ASPELL_VERSION_MAJOR@
+#define RC_VERSION_2            @ASPELL_VERSION_MINOR@
+#define RC_VERSION_3            @ASPELL_VERSION_PATCH@
+#define RC_VERSION_4            @ASPELL_VERSION_BUILD@
+
+#define RC_VERSION              "@ASPELL_VERSION_MAJOR@.@ASPELL_VERSION_MINOR@.@ASPELL_VERSION_PATCH@"
+#define RC_BUILD_NUMBER         "@ASPELL_VERSION_BUILD@"
+#define RC_BUILD_DATE           "@RC_BUILD_DATE@"
+
+#define RC_PRODUCTVERSION       RC_VERSION_1 , RC_VERSION_2 , RC_VERSION_3 , RC_VERSION_4
+#define RC_FILEVERSION          RC_VERSION_1 , RC_VERSION_2 , RC_VERSION_3 , RC_VERSION_4
+
+#ifndef  WINDRES
+#include "windows.h"
+#include "winver.h"
+#endif
+
+/*
+ *      English (U.S.) resources
+ */
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+
+#ifdef _WIN32
+#ifndef WINDRES
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#endif
+#pragma code_page(1252)
+#endif /* _WIN32 */
+
+VS_VERSION_INFO VERSIONINFO
+        FILEVERSION             RC_FILEVERSION
+        PRODUCTVERSION          RC_PRODUCTVERSION
+        FILEFLAGSMASK           VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+        FILEFLAGS               (VS_FF_SPECIALBUILD|VS_FF_DEBUG)
+#else
+        FILEFLAGS               (VS_FF_SPECIALBUILD)
+#endif
+        FILEOS                  VOS_NT_WINDOWS32
+        FILETYPE                VFT_APP
+        FILESUBTYPE             VFT2_UNKNOWN
+        BEGIN
+                BLOCK           "StringFileInfo"
+                BEGIN
+                        BLOCK   "040904E4"
+                        BEGIN
+                                VALUE "FileDescription",        "@RC_FILEDESCRIPTION@"
+
+                                VALUE "FileVersion",            RC_VERSION ", Build:" RC_BUILD_DATE "-" RC_BUILD_NUMBER
+
+                                VALUE "InternalName",           "WIN32 @ASPELL_VERSION@"
+
+                                VALUE "LegalCopyright",
+                                        "Copyright (C) 2021 - 2022, Adam Young. \n"
+                                        "GNU Aspell 0.60.8 - maintained by Kevin Atkinson (kevina@gnu.org) \n"
+                                        "Copyright (C) 2002 - 2022, Free Software Foundation, and others. \n"
+                                        "Copyright (C) 1990, 1993, The Regents of the University of California. \n"
+                                        "Licensed under GNU GPL. \n"
+                                        "This is free software; see the source for copying conditions. \n"
+                                        "There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. \n"
+                                        "see <http://www.gnu.org/licenses/> for details."
+
+                                VALUE "LegalTrademarks",        "GNU GPL, maintained by Kevin Atkinson"
+
+                                VALUE "Maintainers",
+                                        "Port: https://github.com/adamyg/aspell-win32 \n"
+                                        "Original: http://aspell.net"
+
+                                VALUE "OriginalFilename",       "@RC_ORIGINALNAME@"
+
+                                VALUE "ProductName",            "GNU aspell"
+
+                                VALUE "ProductVersion",         VERSION ", Win32"
+
+                                VALUE "SpecialBuild",           "aspell-win32"
+                        END
+                END
+
+                /* The following line should only be modified for localized versions.     */
+                /* It consists of any number of WORD,WORD pairs, with each pair           */
+                /* describing a language,codepage combination supported by the file.      */
+                /*                                                                        */
+                /* For example, a file might have values "0x409,1252" indicating that it  */
+                /* supports English language (0x409) in the Windows ANSI codepage (1252). */
+
+                BLOCK   "VarFileInfo"
+                BEGIN
+                        VALUE "Translation", 0x409, 1252
+                END
+        END
+
+#endif  /* English (U.S.) resources */
+
