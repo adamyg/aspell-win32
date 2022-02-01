@@ -102,6 +102,7 @@ set(ALL_FILES
         ${Header_Files__win32}
         ${Source_Files__lib}
         ${Source_Files__win32}
+        "../../submodule/PDCurses/common/pdcurses.rc"
         )
 
 

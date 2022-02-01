@@ -37,12 +37,23 @@ source_group("Source Files\\win32port" FILES ${Source_Files__win32port})
 
 set(ALL_FILES
         ${Source_Files__win32port}
+        "libpspell.rc"
+        )
+
+string(TIMESTAMP RC_BUILD_DATE "%Y%m%d")
+set(RC_FILEDESCRIPTION "libpspell - pspell dynamic binding for aspell")
+set(RC_ORIGINALNAME "libpspell${ASPELL_SHARED_VERSION}.dll")
+configure_file(
+        "../../win32port/Aspell.rc.in"
+        "libpspell.rc" @ONLY
         )
 
 
 ################################################################################
 # Target
 ################################################################################
+
+include_directories(${CMAKE_BINARY_DIR})
 
 add_library(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} SHARED ${ALL_FILES} "../../win32port/libaspell.def")
 use_props(${PROJECT_NAME}${ASPELL_SHARED_VERSION}${SHARED_ARCH} "${CMAKE_CONFIGURATION_TYPES}" "${DEFAULT_CXX_PROPS}")

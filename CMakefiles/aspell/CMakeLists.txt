@@ -33,20 +33,29 @@ set(ROOT_NAMESPACE libaspell)
 set(Header_Files
         "../../submodule/aspell/prog/check_funs.hpp"
         "../../submodule/aspell/prog/checker_string.hpp"
-)
+        )
 source_group("Header Files" FILES ${Header_Files})
 
 set(Source_Files
         "../../submodule/aspell/prog/aspell.cpp"
         "../../submodule/aspell/prog/check_funs.cpp"
         "../../submodule/aspell/prog/checker_string.cpp"
-)
+        )
 source_group("Source Files" FILES ${Source_Files})
 
 set(ALL_FILES
         ${Header_Files}
         ${Source_Files}
-)
+        "Aspell.rc"
+        )
+
+string(TIMESTAMP RC_BUILD_DATE "%Y%m%d")
+set(RC_FILEDESCRIPTION "aspell - command line utility")
+set(RC_ORIGINALNAME "aspell.exe")
+configure_file(
+        "../../win32port/Aspell.rc.in"
+        "Aspell.rc" @ONLY
+        )
 
 
 ################################################################################

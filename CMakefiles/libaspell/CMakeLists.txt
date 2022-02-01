@@ -225,6 +225,15 @@ set(ALL_FILES
         ${Source_Files__lib}
         ${Source_Files__speller}
         ${Source_Files__tokenizer}
+        "libaspell.rc"
+        )
+
+string(TIMESTAMP RC_BUILD_DATE "%Y%m%d")
+set(RC_FILEDESCRIPTION "libaspell - aspell dynamic library")
+set(RC_ORIGINALNAME "libaspell${ASPELL_SHARED_VERSION}.dll")
+configure_file(
+        "../../win32port/Aspell.rc.in"
+        "libaspell.rc" @ONLY
         )
 
 
