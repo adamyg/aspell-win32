@@ -31,11 +31,11 @@ jobs:
         c:\msys64\usr\bin\pacman --noconfirm -S mingw-w64-x86_64-gettext-tools
         choco install innosetup --version=5.6.1 --force
         @rem dir c:\
-        @dir c:\tools
-        @dir c:\tools\cygwin
-        @dir c:\msys64
-        @dir c:\msys64\mingw64\bin
-        @dir c:\msys64\usr\bin
+        @rem dir c:\tools
+        @rem dir c:\tools\cygwin
+        @rem dir c:\msys64
+        @rem dir c:\msys64\mingw64\bin
+        @rem dir c:\msys64\usr\bin
 
     - name: Windows, generate
       shell: cmd
