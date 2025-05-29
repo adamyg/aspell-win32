@@ -1,7 +1,7 @@
 #
 # libaspell: dictionaries
 #
-# Adam Young, 2021 - 2022.
+# Adam Young, 2021 - 2025.
 #
 # This file is part of the aspell-win32.
 #

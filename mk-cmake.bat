@@ -1,6 +1,6 @@
 @echo off
 rem #
-rem # Adam Young, 2021 - 2022.
+rem # Adam Young, 2021 - 2025.
 rem #
 rem # This file is part of the aspell-win32.
 rem #

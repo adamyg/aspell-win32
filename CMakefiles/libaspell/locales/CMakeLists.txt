@@ -56,6 +56,9 @@ file(MAKE_DIRECTORY "${POT_OUTPUT_DIRECTORY}")
 # toolchain
 find_path(MSGFMT_PATH msgfmt.exe HINTS "c:/Cygwin64/bin" "d:/Cygwin64/bin") #cygwin
 if (MSGFMT_PATH STREQUAL "MSGFMT_PATH-NOTFOUND")
+        find_path(MSGFMT_PATH msgfmt HINTS "c:/msys64/mingw64/bin" "d:/msys64/mingw64/bin") #mingw64
+endif()
+if (MSGFMT_PATH STREQUAL "MSGFMT_PATH-NOTFOUND")
         find_path(MSGFMT_PATH msgfmt HINTS "c:/tools/cygwin" "c:/msys64/usr/bin" "d:/msys64/usr/bin" ENV PATH) #githb-ci: cygwin/msys
 endif()
 message("msgfmt: ${MSGFMT_PATH}/msgfmt")
