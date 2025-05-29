@@ -51,7 +51,7 @@ jobs:
         @exit 0
 
     - name: Windows, tarball
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: package-win32.vs140
         path: ./output.vs140/*
