@@ -120,9 +120,9 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 # Sub-projects
 ################################################################################
 
-set(ASPELL_BUILD "1")
+set(ASPELL_BUILD "2")
 set(ASPELL_APPNAME "Aspell-0.60")
-set(ASPELL_VERSION "0.60.8-${ASPELL_BUILD}")
+set(ASPELL_VERSION "0.60.8.1-build${ASPELL_BUILD}")
 set(ASPELL_SHARED_VERSION "-0.60")
 if("${CMAKE_VS_PLATFORM_NAME}" STREQUAL "x64")
         set(SHARED_ARCH "-x64")
